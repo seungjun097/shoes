@@ -33,23 +33,4 @@ public class MemberDao extends DBConnect{
 		}
 		return result;
 	}
-	
-	//회원정보찾기 - 로그인
-	public int findById(String member_id) {
-		int result = 0;
-		String query = "select * from member where member_id=?";
-		try {
-			psmt = conn.prepareStatement(query);
-			psmt.setString(1, member_id);
-			rs = psmt.executeQuery();
-			if(rs.next()) {
-				result = 1;
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return result;
-	}
-	
 }
