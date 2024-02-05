@@ -53,8 +53,9 @@
 				</div>
 				<div class="row">
 					<div class="col-lg-8">
-						<form action="/shoes/member?cmd=join" method="post" class="colorlib-form">
+						<!-- <form action="/shoes/member?cmd=join" method="post" class="colorlib-form"> -->
 							<h2>회원정보 기입</h2>
+						<form action="/shoes/member?cmd=join" method="post" class="colorlib-form">	
 		              	<div class="row">
 			               <!-- <div class="col-md-12">
 			                  <div class="form-group">
@@ -72,11 +73,10 @@
 			                     </div>
 			                  </div>
 			               </div> -->
-
 								<div class="col-md-12">
 									<div class="form-group">
-										<label for="member_name">이름</label>
-										<input type="text" id="member_name" class="form-control" placeholder="이름" required>
+										<label>이름</label>
+										<input type="text" name="member_name" class="form-control" placeholder="이름" required>
 									</div>
 								</div>
 								<!-- <div class="col-md-6">
@@ -88,33 +88,38 @@
 								
 								<div class="col-md-12">
 									<div class="form-group">
-										<label for="companyname">아이디</label>
-			                    	<input type="text" id="member_id" class="form-control" placeholder="영문/특수문자를 이용한 6~8자리이상" required>
+										<label>아이디</label>
+			                    	<input type="text" name="member_id" class="form-control" placeholder="영문/특수문자를 이용한 6~8자리이상" required>
 			                    	<button type="button" onclick="idcheck()" >아이디 중복체크</button>
 			                    	</div>
 			                    	<div class="form-group">
-										<label for="companyname">비밀번호</label>
-			                    	<input type="text" id="password" class="form-control" placeholder="비밀번호" required>
+										<label>비밀번호</label>
+			                    	<input type="text" name="member_pw" class="form-control" placeholder="비밀번호" required>
 			              			</div>
 									<div class="form-group">
-										<label for="fname">주소</label>
-					                   	<input type="text" id="address" class="form-control" placeholder="주소" required>
+										<label>주소</label>
+					                   	<input type="text" name="member_address" class="form-control" placeholder="주소" required>
 					                </div>
-						            <div class="form-group">
+						            <!-- <div class="form-group">
 						                 <input type="text" id="address2" class="form-control" placeholder="상세주소" required>
-						            </div>
+						            </div> -->
 			               		</div>
 			               		
 								<div class="col-md-12">
 									<div class="form-group">
-										<label for="email">이메일</label>
-										<input type="text" id="email" class="form-control" placeholder="이메일" required>
+										<label>이메일</label>
+										<input type="text" name="member_email" class="form-control" placeholder="이메일" required>
 									</div>
 								</div>
 								<div class="col-md-12">
 									<div class="form-group">
-										<label for="Phone">휴대폰 번호</label>
-										<input type="text" id="zippostalcode" class="form-control" placeholder="" required>
+										<label>휴대폰 번호</label>
+										<input type="text" name="member_phone" class="form-control" placeholder="휴대폰 번호" required>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<input type="hidden" name="member_cancel" class="form-control" placeholder="탈퇴안하실거죠?^^" value = "no">
 									</div>
 								</div>
 
