@@ -62,12 +62,14 @@
 					<div class="row">
 						<div class="col-sm-12 text-left menu-1">
 							<ul>
-								<li class="active"><a href="index.html">Home</a></li>
+								<li class="active"><a href="/shoes/">Home</a></li>
 								<li><a href="/shoes/item?cmd=manlist">man</a></li>
 								<li><a href="/shoes/item?cmd=womanlist&page=0">Woman</a></li>
 								<li><a href="about.html">About</a></li>
 								<li><a href="contact.html">Contact</a></li>
-								<li class="cart"><a href="cart.html"><i class="icon-shopping-cart"></i> Cart [0]</a></li>
+								<li class="cart"><a href="/shoes/cart/shopingCart.jsp"><i class="icon-shopping-cart"></i> Cart [0]</a></li>
+								<li><a href="/shoes/member?cmd=joinForm">join</a></li>
+								<li><a href="">login</a></li>
 							</ul>
 						</div>
 					</div>
@@ -81,12 +83,12 @@
 								<div class="owl-carousel2">
 									<div class="item">
 										<div class="col">
-											<h3><a href="#">어메이징 슈즈 내구성</a></h3>
+											<h3><a href="#">25% off (Almost) Everything! Use Code: Summer Sale</a></h3>
 										</div>
 									</div>
 									<div class="item">
 										<div class="col">
-											<h3><a href="#">사장이 미쳤어요 마진없는 가격에 판매중</a></h3>
+											<h3><a href="#">Our biggest sale yet 50% off all summer shoes</a></h3>
 										</div>
 									</div>
 								</div>
