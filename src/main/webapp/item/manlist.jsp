@@ -56,11 +56,11 @@
 								<div class="side border mb-1">
 									<h3>Category</h3>
 									<ul>
-										<li><a href="#">Slip Ons</a></li>
-										<li><a href="#">Boots</a></li>
-										<li><a href="#">Sandals</a></li>
-										<li><a href="#">Lace Ups</a></li>
-										<li><a href="#">Oxfords</a></li>
+										<li><a href="#">러닝화</a></li>
+										<li><a href="#">워커</a></li>
+										<li><a href="#">슬리퍼</a></li>
+										<li><a href="#">스니커즈</a></li>
+										<li><a href="#">구두</a></li>
 									</ul>
 								</div>
 							</div>
@@ -89,7 +89,7 @@
 							<div class="col-lg-4 mb-4 text-center">
 								<div class="product-entry border">
 									<a href="#" class="prod-img">
-										<img src="images/item-1.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+										<img src="<%=request.getContextPath()%>/file/images/${i.item_list_img}" class="img-fluid" alt="Free html5 bootstrap 4 template">
 									</a>
 									<div class="desc">
 										<h2><a href="<%=request.getContextPath()%>/item?cmd=itemdetail&id=${i.item_key}">${i.item_name}</a></h2>
@@ -106,14 +106,25 @@
 							<div class="col-md-12 text-center">
 								<div class="block-27">
 				               <ul>
-					               <li><a href="#"><i class="ion-ios-arrow-back"></i></a></li>
-				                  <li class="active"><span>1</span></li>
-				                  <li><a href="#">2</a></li>
-				                  <li><a href="#">3</a></li>
-				                  <li><a href="#">4</a></li>
-				                  <li><a href="#">5</a></li>
-				                  <li><a href="#"><i class="ion-ios-arrow-forward"></i></a></li>
-				               </ul>
+						               <c:choose>
+							               <c:when test="${page==0}">
+								                <li><a href="item?cmd=manlist&page=${page-1}"><i class="ion-ios-arrow-back"></i></a></li>
+								           </c:when>
+								           <c:otherwise>
+								           		<li><a href="item?cmd=manlist&page=${page-1}"><i class="ion-ios-arrow-back" ></i></a></li>
+								           </c:otherwise>
+						                </c:choose>
+						                
+						                <c:choose>
+							               <c:when test="${page==lastpage}">
+								                <li><a href="item?cmd=manlist&page=${page+1}"><i class="ion-ios-arrow-forward"></i></a></li>
+								           </c:when>
+								           <c:otherwise>
+								           		<li><a href="item?cmd=manlist&page=${page+1}"><i class="ion-ios-arrow-forward" ></i></a></li>
+								           </c:otherwise>
+						                </c:choose>
+						              
+					               </ul>
 				            </div>
 							</div>
 						</div>

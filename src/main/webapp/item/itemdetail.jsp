@@ -23,28 +23,28 @@
 							<div class="item">
 								<div class="product-entry border">
 									<a href="#" class="prod-img">
-										<img src="../file/images/item-1.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+										<img src="<%=request.getContextPath()%>/file/images/${item.item_list_img}" class="img-fluid" alt="Free html5 bootstrap 4 template">
 									</a>
 								</div>
 							</div>
 							<div class="item">
 								<div class="product-entry border">
 									<a href="#" class="prod-img">
-										<img src="../file/images/item-2.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+										<img src="<%=request.getContextPath()%>/file/images/${item.item_list_img}" class="img-fluid" alt="Free html5 bootstrap 4 template">
 									</a>
 								</div>
 							</div>
 							<div class="item">
 								<div class="product-entry border">
 									<a href="#" class="prod-img">
-										<img src="../file/images/item-3.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+										<img src="<%=request.getContextPath()%>/file/images/${item.item_list_img}" class="img-fluid" alt="Free html5 bootstrap 4 template">
 									</a>
 								</div>
 							</div>
 							<div class="item">
 								<div class="product-entry border">
 									<a href="#" class="prod-img">
-										<img src="../file/images/item-4.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+										<img src="<%=request.getContextPath()%>/file/images/${item.item_list_img}" class="img-fluid" alt="Free html5 bootstrap 4 template">
 									</a>
 								</div>
 							</div>

@@ -61,11 +61,11 @@
 								<div class="side border mb-1">
 									<h3>Category</h3>
 									<ul>
-										<li><a href="#">Slip Ons</a></li>
-										<li><a href="#">Boots</a></li>
-										<li><a href="#">Sandals</a></li>
-										<li><a href="#">Lace Ups</a></li>
-										<li><a href="#">Oxfords</a></li>
+										<li><a href="#">러닝화</a></li>
+										<li><a href="#">부츠</a></li>
+										<li><a href="#">구두</a></li>
+										<li><a href="#">슬리퍼</a></li>
+										<li><a href="#">샌들</a></li>
 									</ul>
 								</div>
 							</div>
