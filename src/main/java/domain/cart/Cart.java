@@ -15,6 +15,7 @@ public class Cart {
 	private int cart_key;
 	private int member_key;
 	private int item_key;
-	private int cart_order_num;
+	private int item_size;
+	private int item_amount;
 	private Date cart_add_date;
 }
