@@ -1,9 +1,12 @@
 package domain.member;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import config.DBConnect;
 import domain.member.dto.JoinReqDto;
+import domain.member.dto.LoginReqDto;
 
 public class MemberDao extends DBConnect{
 	//회원가입, 회원수정, 아이디중복체크, 로그인
@@ -51,5 +54,36 @@ public class MemberDao extends DBConnect{
 		}
 		return result;
 	}
+	
+	//로그인
+	public Member findBymember_idAndMember_pw(LoginReqDto dto) {
+		Member member = null;
+		String query = "select * from member where member_id=? and member_pw=?";
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		try {
+			psmt = conn.prepareStatement(query);
+			psmt.setString(1, dto.getMember_id());
+			psmt.setString(2, dto.getMember_pw());
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				member = Member.builder()
+							.member_key(rs.getInt("member_key"))
+							.member_id(rs.getString("member_id"))
+							.member_pw(rs.getString("member_pw"))
+							.member_name(rs.getString("member_name"))
+							.member_address(rs.getString("member_address"))
+							.member_email(rs.getString("member_email"))
+							.member_phone(rs.getString("member_phone"))
+							.member_cancel(rs.getString("member_cancel"))
+							.build();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return member;
+	}
+	
 	
 }

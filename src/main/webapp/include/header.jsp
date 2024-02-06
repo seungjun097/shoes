@@ -68,8 +68,8 @@
 								<li><a href="about.html">About</a></li>
 								<li><a href="contact.html">Contact</a></li>
 								<li class="cart"><a href="/shoes/cart/shopingCart.jsp"><i class="icon-shopping-cart"></i> Cart [0]</a></li>
-								<li><a href="/shoes/member?cmd=joinForm">join</a></li>
-								<li><a href="">login</a></li>
+								<li class="cart"><a href="/shoes/member?cmd=joinForm">join</a></li>
+								<li class="cart"><a href="/shoes/member?cmd=loginForm">login</a></li>
 							</ul>
 						</div>
 					</div>
