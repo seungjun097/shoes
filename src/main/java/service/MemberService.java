@@ -15,15 +15,17 @@ public class MemberService {
 	}
 
 	// 회원가입, 로그인, 로그아웃, 아이디중복체크, 회원정보수정
+	//회원가입
 	public int join(JoinReqDto dto) {
 		return memberDao.save(dto);
 	}
 
-	
+	//아이디중복체크
 	public int member_idCheck(String member_id) { 
 		return memberDao.findById(member_id); 
 	}
-
+  
+	//로그인
 	public Member login(LoginReqDto dto) {
 		return memberDao.findBymember_idAndMember_pw(dto);
 	}

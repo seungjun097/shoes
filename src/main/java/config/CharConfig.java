@@ -24,6 +24,8 @@ public class CharConfig implements Filter {
 		response.setContentType("text/html; charset=utf-8");
 		//다음 필터나 서블릿으로 응답처리 호출
 		chain.doFilter(request, response);
+		
+		
 	}
 	
 }
