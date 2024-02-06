@@ -34,8 +34,14 @@ public class MemberController extends HttpServlet {
     	//서비스 객체 생성
     	MemberService memberService = new MemberService();
     	
+    	//회원정보 수정 요청
+    	if(cmd.equals("editForm")) {
+    		req.getRequestDispatcher("member/editForm.jsp")
+    		.forward(req, res);
+    	}
+    	
     	//로그인 폼페이지 요청
-    	if(cmd.equals("loginForm")) {
+    	else if(cmd.equals("loginForm")) {
     		//응답페이지 지정
     		req.getRequestDispatcher("member/loginForm.jsp")
     		.forward(req, res);
@@ -44,7 +50,7 @@ public class MemberController extends HttpServlet {
     	}else if(cmd.equals("logout")) {
     		System.out.println("로그아웃 요청");
     		HttpSession session = req.getSession();
-    		session.removeAttribute("principal");
+    		session.invalidate();
     		res.sendRedirect("index.jsp");
     	}
     	
