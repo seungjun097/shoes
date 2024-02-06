@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import domain.member.Member;
 import domain.member.dto.JoinReqDto;
+import domain.member.dto.LoginReqDto;
 import service.MemberService;
 import util.Script;
 
@@ -91,6 +93,23 @@ public class MemberController extends HttpServlet {
     		}
     		out.flush();
     		out.close();
+    	}
+    	
+    	//로그인 기능 요청(post요청)
+    	else if(cmd.equals("login")) {
+    		String member_id = req.getParameter("member_id");
+    		String member_pw = req.getParameter("member_pw");
+    		LoginReqDto dto = new LoginReqDto();
+    		dto.setMember_id(member_id);
+    		dto.setMember_pw(member_pw);
+    		Member memberEntity = memberService.login(dto);
+    		if(memberEntity!=null) {
+    			HttpSession session = req.getSession();
+    			session.setAttribute("principal", memberEntity);
+    			res.sendRedirect("index.jsp");
+    		}else {
+    			Script.back("로그인 실패", res);
+    		}
     	}
     }
     

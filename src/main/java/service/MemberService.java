@@ -1,7 +1,9 @@
 package service;
 
+import domain.member.Member;
 import domain.member.MemberDao;
 import domain.member.dto.JoinReqDto;
+import domain.member.dto.LoginReqDto;
 
 public class MemberService {
 
@@ -22,4 +24,7 @@ public class MemberService {
 		return memberDao.findById(member_id); 
 	}
 
+	public Member login(LoginReqDto dto) {
+		return memberDao.findBymember_idAndMember_pw(dto);
+	}
 }
