@@ -6,7 +6,7 @@
 
 <script>
     function decreaseQuantity() {
-        var quantityInput = document.getElementById('quantity');
+        var quantityInput = document.getElementById('amount');
         var currentQuantity = parseInt(quantityInput.value);
         if (currentQuantity > 1) {
             quantityInput.value = currentQuantity - 1;
@@ -14,12 +14,34 @@
     }
 
     function increaseQuantity() {
-        var quantityInput = document.getElementById('quantity');
+        var quantityInput = document.getElementById('amount');
         var currentQuantity = parseInt(quantityInput.value);
         if (currentQuantity < 100) {
             quantityInput.value = currentQuantity + 1;
         }
     }
+    
+    function cartSave(item_key, member_key) {
+		let data = {
+				member_key: member_key,
+				item_key: item_key,
+				item_size: $("#size").val(),
+				item_amount: $("#amount").val()
+		};
+		$.ajax({
+			type: "post",
+			url: "/shoes/cart?cmd=save",
+			data: JSON.stringify(data),
+			contentType: "application/json; charset=utf-8",
+			dataType: "text"
+		}).done(function(result){
+			if(result.statusCode > 0) {
+				alert(result);
+			}else {
+				alert("실패");
+			}
+		})
+	}
 </script>
 
 		<div class="breadcrumbs">
@@ -109,16 +131,16 @@
 				            <i class="icon-minus2"></i>
 				        </button>
 				    	</span>
-				    		<input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
+				    		<input type="text" id="amount" name="amount" class="form-control input-number" value="1" min="1" max="100">
 				    			<span class="input-group-btn ml-1">
 				        	<button type="button" class="quantity-right-plus btn" onclick="increaseQuantity()" data-type="plus" data-field="">
 				            	<i class="icon-plus2"></i>
 				        	</button>
 				    	</span>
 					</div>
-                  	<div class="row">
-	                  	<div class="col-sm-12 text-center">
-									<p class="addtocart"><a href="cart.html" class="btn btn-primary btn-addtocart"><i class="icon-shopping-cart"></i> Add to Cart</a></p>
+                  			<div class="row">
+	                  			<div class="col-sm-12 text-center">
+	                  				<button type ="button" class="btn btn-primary pull-right" onclick= "cartSave(${item.item_key}, ${sessionScope.principal.member_key})">Add to Cart</button>
 								</div>
 							</div>
 						</div>
