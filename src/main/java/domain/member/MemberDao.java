@@ -1,7 +1,7 @@
 package domain.member;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+//import java.sql.PreparedStatement;
+//import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import config.DBConnect;
@@ -17,6 +17,7 @@ public class MemberDao extends DBConnect{
 		int result = 0;
 		String query = "insert into member(member_key, member_name, member_id, member_pw, member_email, member_address, member_phone, member_cancel)"
 				+ " values(member_seq.nextval,?,?,?,?,?,?,?)";
+		//PreparedStatement psmt = null;
 		try {
 			psmt = conn.prepareStatement(query);
 			psmt.setString(1, dto.getMember_name());
@@ -41,6 +42,8 @@ public class MemberDao extends DBConnect{
 	public int findById(String member_id) {
 		int result = 0;
 		String query = "select * from member where member_id=?";
+		//PreparedStatement psmt = null;
+		//ResultSet rs = null;
 		try {
 			psmt = conn.prepareStatement(query);
 			psmt.setString(1, member_id);
@@ -59,8 +62,8 @@ public class MemberDao extends DBConnect{
 	public Member findBymember_idAndMember_pw(LoginReqDto dto) {
 		Member member = null;
 		String query = "select * from member where member_id=? and member_pw=?";
-		PreparedStatement psmt = null;
-		ResultSet rs = null;
+		//PreparedStatement psmt = null;
+		//ResultSet rs = null;
 		try {
 			psmt = conn.prepareStatement(query);
 			psmt.setString(1, dto.getMember_id());
