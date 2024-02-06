@@ -23,28 +23,28 @@
 							<div class="item">
 								<div class="product-entry border">
 									<a href="#" class="prod-img">
-										<img src="../file/images/item-1.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+										<img src="<%=request.getContextPath()%>/file/images/${item.item_list_img}" class="img-fluid" alt="Free html5 bootstrap 4 template">
 									</a>
 								</div>
 							</div>
 							<div class="item">
 								<div class="product-entry border">
 									<a href="#" class="prod-img">
-										<img src="../file/images/item-2.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+										<img src="<%=request.getContextPath()%>/file/images/${item.item_list_img}" class="img-fluid" alt="Free html5 bootstrap 4 template">
 									</a>
 								</div>
 							</div>
 							<div class="item">
 								<div class="product-entry border">
 									<a href="#" class="prod-img">
-										<img src="../file/images/item-3.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+										<img src="<%=request.getContextPath()%>/file/images/${item.item_list_img}" class="img-fluid" alt="Free html5 bootstrap 4 template">
 									</a>
 								</div>
 							</div>
 							<div class="item">
 								<div class="product-entry border">
 									<a href="#" class="prod-img">
-										<img src="../file/images/item-4.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+										<img src="<%=request.getContextPath()%>/file/images/${item.item_list_img}" class="img-fluid" alt="Free html5 bootstrap 4 template">
 									</a>
 								</div>
 							</div>
@@ -69,9 +69,9 @@
 								<div class="block-26 mb-2">
 									<h4>Size</h4>
 				               <ul>
-				               	  <li><a href="#">230</a></li>
-				                  <li><a href="#">235</a></li>
-				                  <li><a href="#">240</a></li>
+				                  <li><a href="#">7</a></li>
+				                  <li><a href="#">7.5</a></li>
+				                  <li><a href="#">8</a></li>
 				                  <li><a href="#">8.5</a></li>
 				                  <li><a href="#">9</a></li>
 				                  <li><a href="#">9.5</a></li>
