@@ -80,17 +80,12 @@ public class ItemDao extends DBConnect {
 		return items;
 	}
 	//남자 아이템 목록
-	public List<Item> findManList(int page){
+	public List<Item> findManList(){
 			List<Item> items =  new ArrayList<>();
-			String query = "select * from (select Td.*,rownum as rnum from (select * from item where item_gender = '남' order by item_key) td)"
-					+ " where rnum between ? and ?";
-			int start = 5*page+1;
+			String query = "select * from item where item_gender = '남'";
 			try {
-				psmt = conn.prepareStatement(query);
-				psmt.setInt(1, start);
-				psmt.setInt(2, start+6);
-				rs = psmt.executeQuery();
-				System.out.println("rs.next ="+rs.next());
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(query);
 				while(rs.next()) {
 					Item item = new Item();
 					item = Item.builder()

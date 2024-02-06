@@ -42,7 +42,9 @@ public class MemberController extends HttpServlet {
     	
     	//로그아웃 요청
     	}else if(cmd.equals("logout")) {
+    		System.out.println("로그아웃 요청");
     		HttpSession session = req.getSession();
+    		session.removeAttribute("principal");
     		res.sendRedirect("index.jsp");
     	}
     	
@@ -55,6 +57,7 @@ public class MemberController extends HttpServlet {
     	
     	//회원가입 기능 요청(post요청)
     	else if(cmd.equals("join")) {
+    		res.setContentType("text/html; charset=utf-8");
     		String member_name = req.getParameter("member_name");
     		String member_id = req.getParameter("member_id");
     		String member_pw = req.getParameter("member_pw");
@@ -84,6 +87,7 @@ public class MemberController extends HttpServlet {
     		//1.입력스트림 생성(폼전송이 아닐때)
     		BufferedReader br = req.getReader();
     		String member_id = br.readLine();
+    		System.out.println("아이디는 : " + member_id);
     		int result = memberService.member_idCheck(member_id);
     		PrintWriter out = res.getWriter();
     		if(result==0) {

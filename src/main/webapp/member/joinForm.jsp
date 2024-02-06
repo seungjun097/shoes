@@ -13,6 +13,7 @@
 		function idcheck(){
 			//input의 값을 member_id변수에 할당
 			let member_id = $("#member_id").val();
+			console.log(member_id);
 			//네트워크 요청
 			$.ajax({
 				type: "POST",
@@ -55,7 +56,7 @@
 					<div class="col-lg-8">
 						<!-- <form action="/shoes/member?cmd=join" method="post" class="colorlib-form"> -->
 							<h2>회원정보 기입</h2>
-						<form action="/shoes/member?cmd=join" method="post" class="colorlib-form">	
+						<form action="/shoes/member?cmd=join" method="post" class="colorlib-form" onsubmit="return valid()">	
 		              	<div class="row">
 			               <!-- <div class="col-md-12">
 			                  <div class="form-group">
@@ -89,7 +90,7 @@
 								<div class="col-md-12">
 									<div class="form-group">
 										<label>아이디</label>
-			                    	<input type="text" name="member_id" class="form-control" placeholder="영문/특수문자를 이용한 6~8자리이상" required>
+			                    	<input type="text" id="member_id" name="member_id" class="form-control" placeholder="영문/특수문자를 이용한 6~8자리이상" required>
 			                    	<button type="button" onclick="idcheck()" >아이디 중복체크</button>
 			                    	</div>
 			                    	<div class="form-group">
