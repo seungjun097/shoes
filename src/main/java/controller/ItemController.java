@@ -65,8 +65,8 @@ public class ItemController extends HttpServlet {
     		String now = new SimpleDateFormat("yyyyMMdd_Hmss").format(new Date());
     		
     		String new_item_detail_img = "detail"+now+detail_exe;
-    		String new_item_cart_img = "cart"+now+detail_exe;
-    		String new_item_list_img = "list"+now+detail_exe;
+    		String new_item_cart_img = "cart"+now+cart_exe;
+    		String new_item_list_img = "list"+now+list_exe;
     		
     		File oldFile1 = new File(saveDirectory+File.separator+item_detail_img);
     		File newFile1 = new File(saveDirectory+File.separator+new_item_detail_img);
