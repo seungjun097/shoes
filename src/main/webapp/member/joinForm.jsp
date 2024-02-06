@@ -120,7 +120,7 @@
 								</div>
 								<div class="col-md-12">
 									<div class="form-group">
-										<input type="hidden" name="member_cancel" class="form-control" placeholder="탈퇴안하실거죠?^^" value = "no">
+										<input type="hidden" name="member_cancel" class="form-control" placeholder="" value = "no">
 									</div>
 								</div>
 

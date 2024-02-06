@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-   
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -49,7 +49,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-sm-7 col-md-9">
-							<div id="colorlib-logo"><a href="/shoes/">Footwear</a></div>
+							<div id="colorlib-logo"><a href="/shoes">Footwear</a></div>
 						</div>
 						<div class="col-sm-5 col-md-3">
 			            <form action="#" class="search-wrap">
@@ -60,27 +60,33 @@
 			            </form>
 			         </div>
 		         </div>
+		         
 					<div class="row">
 						<div class="col-sm-12 text-left menu-1">
 							<ul>
+								<%	
+									if(session.getAttribute("principal")==null) { //로그아웃 일때는 '로그인과 회원가입' 메뉴가 보이고
+				 				%>
 								<li class="active"><a href="/shoes/">Home</a></li>
 								<li><a href="/shoes/item?cmd=manlist">man</a></li>
 								<li><a href="/shoes/item?cmd=womanlist&page=0">Woman</a></li>
 								<li><a href="about.html">About</a></li>
 								<li><a href="contact.html">Contact</a></li>
 								<li class="cart"><a href="/shoes/cart/shopingCart.jsp"><i class="icon-shopping-cart"></i> Cart [0]</a></li>
-								
-								<%
-									if(session.getAttribute("member_id")==null) { //로그아웃 일때는 '로그인과 회원가입' 메뉴가 보이고
-								%>
 								<li class="cart"><a href="/shoes/member?cmd=joinForm">join</a></li>
 								<li class="cart"><a href="/shoes/member?cmd=loginForm">login</a></li>
 								<%
 									}
 									else {	//로그인 일때는 '로그아웃과 회원정보수정' 메뉴가 보이게 해라
 								%>
-								<li class="cart"><a href="#">회원정보 수정</a></li>
-								<li class="cart"><a href="#">로그아웃</a></li>
+								<li class="active"><a href="/shoes/">Home</a></li>
+								<li><a href="/shoes/item?cmd=manlist">man</a></li>
+								<li><a href="/shoes/item?cmd=womanlist&page=0">Woman</a></li>
+								<li><a href="about.html">About</a></li>
+								<li><a href="contact.html">Contact</a></li>
+								<li class="cart"><a href="/shoes/cart/shopingCart.jsp"><i class="icon-shopping-cart"></i> Cart [0]</a></li>
+								<li class="cart"><a href="/shoes/member?cmd=editForm">회원정보 수정</a></li>
+								<li class="cart"><a href="/shoes/member?cmd=logout">로그아웃</a></li>
 								<%
 									}
 								%>
