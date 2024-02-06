@@ -69,9 +69,9 @@
 								<div class="block-26 mb-2">
 									<h4>Size</h4>
 				               <ul>
-				                  <li><a href="#">7</a></li>
-				                  <li><a href="#">7.5</a></li>
-				                  <li><a href="#">8</a></li>
+				               	  <li><a href="#">230</a></li>
+				                  <li><a href="#">235</a></li>
+				                  <li><a href="#">240</a></li>
 				                  <li><a href="#">8.5</a></li>
 				                  <li><a href="#">9</a></li>
 				                  <li><a href="#">9.5</a></li>
