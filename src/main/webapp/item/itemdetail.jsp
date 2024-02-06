@@ -4,6 +4,24 @@
 <%@ include file="../include/header.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<script>
+    function decreaseQuantity() {
+        var quantityInput = document.getElementById('quantity');
+        var currentQuantity = parseInt(quantityInput.value);
+        if (currentQuantity > 1) {
+            quantityInput.value = currentQuantity - 1;
+        }
+    }
+
+    function increaseQuantity() {
+        var quantityInput = document.getElementById('quantity');
+        var currentQuantity = parseInt(quantityInput.value);
+        if (currentQuantity < 100) {
+            quantityInput.value = currentQuantity + 1;
+        }
+    }
+</script>
+
 		<div class="breadcrumbs">
 			<div class="container">
 				<div class="row">
@@ -13,8 +31,6 @@
 				</div>
 			</div>
 		</div>
-
-
 		<div class="colorlib-product">
 			<div class="container">
 				<div class="row row-pb-lg product-detail-wrap">
@@ -50,6 +66,7 @@
 							</div>
 						</div>
 					</div>
+					
 					<div class="col-sm-4">
 						<div class="product-desc">
 							<h3>${item.item_name}</h3>
@@ -65,48 +82,40 @@
 								</span>
 							</p>
 							<p>${item.item_content}</p>
-							<div class="size-wrap">
-								<div class="block-26 mb-2">
-									<h4>Size</h4>
-				               <ul>
-				                  <li><a href="#">7</a></li>
-				                  <li><a href="#">7.5</a></li>
-				                  <li><a href="#">8</a></li>
-				                  <li><a href="#">8.5</a></li>
-				                  <li><a href="#">9</a></li>
-				                  <li><a href="#">9.5</a></li>
-				                  <li><a href="#">10</a></li>
-				                  <li><a href="#">10.5</a></li>
-				                  <li><a href="#">11</a></li>
-				                  <li><a href="#">11.5</a></li>
-				                  <li><a href="#">12</a></li>
-				                  <li><a href="#">12.5</a></li>
-				                  <li><a href="#">13</a></li>
-				                  <li><a href="#">13.5</a></li>
-				                  <li><a href="#">14</a></li>
-				               </ul>
-				            </div>
-				            <div class="block-26 mb-4">
-									<h4>Width</h4>
-				               <ul>
-				                  <li><a href="#">M</a></li>
-				                  <li><a href="#">W</a></li>
-				               </ul>
-				            </div>
-							</div>
-                     <div class="input-group mb-4">
-                     	<span class="input-group-btn">
-                        	<button type="button" class="quantity-left-minus btn"  data-type="minus" data-field="">
-                           <i class="icon-minus2"></i>
-                        	</button>
-                    		</span>
-                     	<input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
-                     	<span class="input-group-btn ml-1">
-                        	<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
-                             <i class="icon-plus2"></i>
-                         </button>
-                     	</span>
-                  	</div>
+							<label for="country">신발사이즈</label>
+			   					<div class="form-field">
+			       				<select name="size" id="size" class="form-control" style="width:100px">
+				       				<option value="230">230</option>
+				       				<option value="233">235</option>
+				       				<option value="240">240</option>
+				       				<option value="245">245</option>
+				       				<option value="250">250</option>
+				       				<option value="255">255</option>
+				       				<option value="260">260</option>
+				       				<option value="265">265</option>
+				       				<option value="270">270</option>
+				       				<option value="275">275</option>
+				       				<option value="280">280</option>
+				       				<option value="285">285</option>
+				       				<option value="290">290</option>
+				       				<option value="295">295</option>
+				       				<option value="300">300</option>
+			      				</select>
+			 					</div>
+			 					<br>
+					<div class="input-group mb-4">
+				    	<span class="input-group-btn">
+				        <button type="button" class="quantity-left-minus btn" onclick="decreaseQuantity()" data-type="minus" data-field="">
+				            <i class="icon-minus2"></i>
+				        </button>
+				    	</span>
+				    		<input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
+				    			<span class="input-group-btn ml-1">
+				        	<button type="button" class="quantity-right-plus btn" onclick="increaseQuantity()" data-type="plus" data-field="">
+				            	<i class="icon-plus2"></i>
+				        	</button>
+				    	</span>
+					</div>
                   	<div class="row">
 	                  	<div class="col-sm-12 text-center">
 									<p class="addtocart"><a href="cart.html" class="btn btn-primary btn-addtocart"><i class="icon-shopping-cart"></i> Add to Cart</a></p>
@@ -115,7 +124,6 @@
 						</div>
 					</div>
 				</div>
-
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="row">
