@@ -54,6 +54,8 @@ public class MemberDao extends DBConnect{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 		return result;
 	}
@@ -84,6 +86,8 @@ public class MemberDao extends DBConnect{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 		return member;
 	}
