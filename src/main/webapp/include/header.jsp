@@ -70,8 +70,7 @@
 								<li class="active"><a href="/shoes/">Home</a></li>
 								<li><a href="/shoes/item?cmd=manlist">man</a></li>
 								<li><a href="/shoes/item?cmd=womanlist&page=0">Woman</a></li>
-								<li><a href="about.html">About</a></li>
-								<li><a href="contact.html">Contact</a></li>
+								<li><a href="/shoes/board/List.jsp">board</a></li>
 								<li class="cart"><a href="/shoes/cart/shopingCart.jsp"><i class="icon-shopping-cart"></i> Cart [0]</a></li>
 								<li class="cart"><a href="/shoes/member?cmd=joinForm">join</a></li>
 								<li class="cart"><a href="/shoes/member?cmd=loginForm">login</a></li>
@@ -82,8 +81,7 @@
 								<li class="active"><a href="/shoes/">Home</a></li>
 								<li><a href="/shoes/item?cmd=manlist">man</a></li>
 								<li><a href="/shoes/item?cmd=womanlist&page=0">Woman</a></li>
-								<li><a href="about.html">About</a></li>
-								<li><a href="contact.html">Contact</a></li>
+								<li><a href="/shoes/board/List.jsp">board</a></li>
 								<li class="cart"><a href="/shoes/cart/shopingCart.jsp"><i class="icon-shopping-cart"></i> Cart [0]</a></li>
 								<li class="cart"><a href="/shoes/member?cmd=editForm">회원정보 수정</a></li>
 								<li class="cart"><a href="/shoes/member?cmd=logout">로그아웃</a></li>
