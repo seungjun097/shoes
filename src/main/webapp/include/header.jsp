@@ -10,7 +10,7 @@
 
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Rokkitt:100,300,400,700" rel="stylesheet">
-	
+
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/file/css/animate.css">
 	<!-- Icomoon Icon Fonts-->
@@ -34,10 +34,30 @@
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/file/css/bootstrap-datepicker.css">
 	<!-- Flaticons  -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/file/fonts/flaticon/font/flaticon.css">
-
+	
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/file/css/style.css">
-
+	<!-- jquery -->
+	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+	
+	<script>
+	$(document).ready(function() {
+	    $.ajax({
+    		type: "post",
+    		url: "/shoes/cart?cmd=cartlistnum",
+    		dataType: "text",
+	        success: function(response) {
+	        	let str = "cart["+response+"]";
+	        	console.log(str);
+	            $('#cartCount').text(str);
+	        },
+	        error: function() {
+	        	console.log("카트 num호출 실패");
+	        }
+	    });
+	});
+	</script>
+	
 	</head>
 	<body>
 		
@@ -60,31 +80,26 @@
 			            </form>
 			         </div>
 		         </div>
-		         
+		         	
 					<div class="row">
 						<div class="col-sm-12 text-left menu-1">
 							<ul>
-								<%	
-									if(session.getAttribute("principal")==null) { //로그아웃 일때는 '로그인과 회원가입' 메뉴가 보이고
-				 				%>
 								<li class="active"><a href="/shoes/">Home</a></li>
 								<li><a href="/shoes/item?cmd=manlist">man</a></li>
 								<li><a href="/shoes/item?cmd=womanlist&page=0">Woman</a></li>
-								<li><a href="about.html">About</a></li>
-								<li><a href="contact.html">Contact</a></li>
-								<li class="cart"><a href="/shoes/cart/shopingCart.jsp"><i class="icon-shopping-cart"></i> Cart [0]</a></li>
+								<li class="cart"><a id="cartCount"></a></li>
+								
+								<%	
+									if(session.getAttribute("principal")==null) { //로그아웃 일때는 '로그인과 회원가입' 메뉴가 보이고
+				 				%>
 								<li class="cart"><a href="/shoes/member?cmd=joinForm">join</a></li>
 								<li class="cart"><a href="/shoes/member?cmd=loginForm">login</a></li>
 								<%
 									}
 									else {	//로그인 일때는 '로그아웃과 회원정보수정' 메뉴가 보이게 해라
 								%>
-								<li class="active"><a href="/shoes/">Home</a></li>
-								<li><a href="/shoes/item?cmd=manlist">man</a></li>
-								<li><a href="/shoes/item?cmd=womanlist&page=0">Woman</a></li>
-								<li><a href="about.html">About</a></li>
-								<li><a href="contact.html">Contact</a></li>
-								<li class="cart"><a href="/shoes/cart/shopingCart.jsp"><i class="icon-shopping-cart"></i> Cart [0]</a></li>
+								
+								<li class="cart"><a href="/shoes/cart?cmd=list"><i class="icon-shopping-cart"></i> cart [0]</a></li>
 								<li class="cart"><a href="/shoes/member?cmd=editForm">회원정보 수정</a></li>
 								<li class="cart"><a href="/shoes/member?cmd=logout">로그아웃</a></li>
 								<%
@@ -118,3 +133,4 @@
 				</div>
 			</div>
 		</nav>
+	</div>

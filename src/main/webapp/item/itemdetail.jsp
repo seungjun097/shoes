@@ -22,25 +22,29 @@
     }
     
     function cartSave(item_key, member_key) {
-		let data = {
-				member_key: member_key,
-				item_key: item_key,
-				item_size: $("#size").val(),
-				item_amount: $("#amount").val()
-		};
-		$.ajax({
-			type: "post",
-			url: "/shoes/cart?cmd=save",
-			data: JSON.stringify(data),
-			contentType: "application/json; charset=utf-8",
-			dataType: "text"
-		}).done(function(result){
-			if(result.statusCode > 0) {
-				alert(result);
-			}else {
-				alert("실패");
-			}
-		})
+    	if(member_key == null) {
+    		alert("로그인이 필요합니다.");
+    	}else {
+    		let data = {
+    				member_key: member_key,
+    				item_key: item_key,
+    				item_size: $("#size").val(),
+    				item_amount: $("#amount").val()
+    		};
+    		$.ajax({
+    			type: "post",
+    			url: "/shoes/cart?cmd=save",
+    			data: JSON.stringify(data),
+    			contentType: "application/json; charset=utf-8",
+    			dataType: "text"
+    		}).done(function(result){
+    			if(result == "성공") {
+    				alert("장바구니에 상품 추가");
+    			}else {
+    				alert("장바구니에 문제가 있습니다");
+    			}
+    		})
+    	}
 	}
 </script>
 
@@ -61,28 +65,28 @@
 							<div class="item">
 								<div class="product-entry border">
 									<a href="#" class="prod-img">
-										<img src="<%=request.getContextPath()%>/file/images/${item.item_list_img}" class="img-fluid" alt="Free html5 bootstrap 4 template">
+										<img src="<%=request.getContextPath()%>/file/images/${item.item_detail_img}" class="img-fluid" alt="Free html5 bootstrap 4 template">
 									</a>
 								</div>
 							</div>
 							<div class="item">
 								<div class="product-entry border">
 									<a href="#" class="prod-img">
-										<img src="<%=request.getContextPath()%>/file/images/${item.item_list_img}" class="img-fluid" alt="Free html5 bootstrap 4 template">
+										<img src="<%=request.getContextPath()%>/file/images/${item.item_detail_img}" class="img-fluid" alt="Free html5 bootstrap 4 template">
 									</a>
 								</div>
 							</div>
 							<div class="item">
 								<div class="product-entry border">
 									<a href="#" class="prod-img">
-										<img src="<%=request.getContextPath()%>/file/images/${item.item_list_img}" class="img-fluid" alt="Free html5 bootstrap 4 template">
+										<img src="<%=request.getContextPath()%>/file/images/${item.item_detail_img}" class="img-fluid" alt="Free html5 bootstrap 4 template">
 									</a>
 								</div>
 							</div>
 							<div class="item">
 								<div class="product-entry border">
 									<a href="#" class="prod-img">
-										<img src="<%=request.getContextPath()%>/file/images/${item.item_list_img}" class="img-fluid" alt="Free html5 bootstrap 4 template">
+										<img src="<%=request.getContextPath()%>/file/images/${item.item_detail_img}" class="img-fluid" alt="Free html5 bootstrap 4 template">
 									</a>
 								</div>
 							</div>
@@ -140,7 +144,7 @@
 					</div>
                   			<div class="row">
 	                  			<div class="col-sm-12 text-center">
-	                  				<button type ="button" class="btn btn-primary pull-right" onclick= "cartSave(${item.item_key}, ${sessionScope.principal.member_key})">Add to Cart</button>
+	                  				<button id ="cart_btn" type ="button" class="btn btn-primary" onclick= "cartSave(${item.item_key}, ${sessionScope.principal.member_key})">Add to Cart</button>
 								</div>
 							</div>
 						</div>
