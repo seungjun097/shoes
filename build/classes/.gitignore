@@ -1,0 +1,4 @@
+/controller/
+/domain/
+/service/
+*.class
