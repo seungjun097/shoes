@@ -73,9 +73,7 @@ public class ItemDao extends DBConnect {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
-			if(psmt!=null && conn!=null && rs!=null) {
-				close();
-			}
+			close();
 		}
 		return items;
 	}

@@ -2,13 +2,14 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ include file="../include/header.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script>
   function goBack() {
     history.back();
   }
 </script>
-<%@ include file="../include/header.jsp"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 		<div class="breadcrumbs">
 			<div class="container">
 				<div class="row">
@@ -94,7 +95,7 @@
 							<div class="col-lg-4 mb-4 text-center">
 								<div class="product-entry border">
 									<a href="#" class="prod-img">
-										<img src="images/item-1.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+										<img src="<%=request.getContextPath()%>/file/images/${i.item_list_img}" class="img-fluid" alt="Free html5 bootstrap 4 template">
 									</a>
 									<div class="desc">
 										<h2><a href="<%=request.getContextPath()%>/item?cmd=itemdetail&id=${i.item_key}">${i.item_name}</a></h2>
