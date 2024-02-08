@@ -87,6 +87,7 @@
 								<li class="active"><a href="/shoes/">Home</a></li>
 								<li><a href="/shoes/item?cmd=manlist">man</a></li>
 								<li><a href="/shoes/item?cmd=womanlist&page=0">Woman</a></li>
+                <li><a href="/shoes/board/List.jsp">board</a></li>
 								<li class="cart"><a id="cartCount"></a></li>
 								
 								<%	
@@ -97,8 +98,7 @@
 								<%
 									}
 									else {	//로그인 일때는 '로그아웃과 회원정보수정' 메뉴가 보이게 해라
-								%>
-								
+								%>							
 								<li class="cart"><a href="/shoes/cart?cmd=list"><i class="icon-shopping-cart"></i> cart [0]</a></li>
 								<li class="cart"><a href="/shoes/member?cmd=editForm">회원정보 수정</a></li>
 								<li class="cart"><a href="/shoes/member?cmd=logout">로그아웃</a></li>
