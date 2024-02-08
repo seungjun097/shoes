@@ -97,16 +97,17 @@
 										<label>비밀번호</label>
 			                    	<input type="text" name="member_pw" class="form-control" placeholder="비밀번호" required>
 			              			</div>
-									<div class="form-group">
-										<label>주소</label>
-					                   	<input type="text" name="member_address" class="form-control" placeholder="주소" required>
-					                </div>
+									
 						            <!-- <div class="form-group">
 						                 <input type="text" id="address2" class="form-control" placeholder="상세주소" required>
 						            </div> -->
 			               		</div>
 			               		
 								<div class="col-md-12">
+									<div class="form-group">
+										<label>주소</label>
+					                   	<input type="text" name="member_address" class="form-control" placeholder="주소" required>
+					                </div>
 									<div class="form-group">
 										<label>이메일</label>
 										<input type="text" name="member_email" class="form-control" placeholder="이메일" required>

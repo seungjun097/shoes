@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import domain.member.Member;
+import domain.member.MemberDao;
+import domain.member.dto.EditReqDto;
 import domain.member.dto.JoinReqDto;
 import domain.member.dto.LoginReqDto;
 import service.MemberService;
@@ -34,10 +36,64 @@ public class MemberController extends HttpServlet {
     	//서비스 객체 생성
     	MemberService memberService = new MemberService();
     	
-    	//회원정보 수정 요청
+    	//회원정보 수정 폼페이지 요청
     	if(cmd.equals("editForm")) {
+    		//세션생성
+    		HttpSession session = req.getSession();
+    		//세션에 담겨있는 Member리턴 
+    		Member smember = (Member) session.getAttribute("principal");
+    		//세션에 담겨있는 Member의 member_key반 받기 
+    		//member_key로 회원정보 조회 
+    		Member member = memberService.memberlist(smember.getMember_key());
+    		//req에 속성으로 dto키에 회원정보 담아줌 
+    		req.setAttribute("dto", member);
     		req.getRequestDispatcher("member/editForm.jsp")
     		.forward(req, res);
+    	}
+    	
+    	//회원정보 수정 기능 요청(post요청)
+    	else if(cmd.equals("edit")) {
+    		res.setContentType("text/html; charset=utf-8");
+    		int member_key = Integer.parseInt(req.getParameter("member_key"));
+    		String member_name = req.getParameter("member_name");
+    		String member_id = req.getParameter("member_id");
+    		String member_pw = req.getParameter("member_pw");
+    		String member_email = req.getParameter("member_email");
+    		String member_address = req.getParameter("member_address");
+    		String member_phone = req.getParameter("member_phone");
+    		String member_cancel = req.getParameter("member_cancel");
+    		
+    		EditReqDto dto = new EditReqDto();
+    		dto.setMember_key(member_key);
+    		dto.setMember_name(member_name);
+    		dto.setMember_id(member_id);
+    		dto.setMember_pw(member_pw);
+    		dto.setMember_email(member_email);
+    		dto.setMember_address(member_address);
+    		dto.setMember_phone(member_phone);
+    		dto.setMember_cancel(member_cancel);
+   			
+			int result = 0;
+			result = memberService.edit(dto);
+			if(result!=0) { 
+				Script.alertMsg("회원정보가 수정 되었습니다.", "/shoes", res);
+			}else { 
+				Script.back("회원정보 수정 실패", res);
+			}
+			
+    	}
+    	
+    	//회원정보 삭제 요청
+    	else if(cmd.equals("delete")) {
+    		int member_key = Integer.parseInt(req.getParameter("member_key"));
+    		System.out.println("들어갈 때"+member_key);
+    		int result = memberService.delete(member_key);
+    		System.out.println("나온 값"+result);
+    		if(result==1) {
+    			res.sendRedirect("index.jsp");
+    		}else {
+    			Script.back("삭제실패", res);
+    		}
     	}
     	
     	//로그인 폼페이지 요청
@@ -121,6 +177,8 @@ public class MemberController extends HttpServlet {
     			Script.back("로그인 실패", res);
     		}
     	}
+    	
+    	
     }
     
     //get 요청이 오면 doGet호출

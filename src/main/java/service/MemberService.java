@@ -2,6 +2,7 @@ package service;
 
 import domain.member.Member;
 import domain.member.MemberDao;
+import domain.member.dto.EditReqDto;
 import domain.member.dto.JoinReqDto;
 import domain.member.dto.LoginReqDto;
 
@@ -28,5 +29,21 @@ public class MemberService {
 	//로그인
 	public Member login(LoginReqDto dto) {
 		return memberDao.findBymember_idAndMember_pw(dto);
+	}
+	
+	//회원정보수정
+	public int edit(EditReqDto dto) {
+		return memberDao.updateMember(dto);
+	}
+	
+	//회원정보 조회
+	public Member memberlist(int member_key) {
+		this.memberDao = new MemberDao();
+		return memberDao.memberlist(member_key);
+	}
+	
+	//회원정보 삭제
+	public int delete(int member_key) {
+		return memberDao.deleteMember(member_key);
 	}
 }
