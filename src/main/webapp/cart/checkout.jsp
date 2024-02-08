@@ -1,6 +1,61 @@
+<%@page import="domain.member.Member"%>
+<%@page import="domain.cart.dto.listReqCartDto"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%
+	List<listReqCartDto> cartlist = (List<listReqCartDto>) request.getAttribute("cartlist");
+	int Subtotal = cartlist.stream().mapToInt(i -> i.getItem_amount()*i.getItem_price()).sum();
+	String Delivery = request.getParameter("Delivery");
+	String Discount = request.getParameter("Discount");
+	int orderTotal = Subtotal+Integer.parseInt(Delivery)-Integer.parseInt(Discount);
+	Member member = (Member) session.getAttribute("principal");
+	
+%>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    function sample6_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+                var extraAddr = ''; // 참고항목 변수
+
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                if(data.userSelectedType === 'R'){
+                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있고, 공동주택일 경우 추가한다.
+                    if(data.buildingName !== '' && data.apartment === 'Y'){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                
+                } else {
+                    document.getElementById("sample6_extraAddress").value = '';
+                }
+                document.getElementById('sample6_postcode').value = data.zonecode;
+                document.getElementById("sample6_address").value = addr;
+                document.getElementById("sample6_detailAddress").focus();
+            }
+        }).open();
+    }
+</script>
 
 		<div class="breadcrumbs">
 			<div class="container">
@@ -11,7 +66,6 @@
 				</div>
 			</div>
 		</div>
-		
 		
 		<div class="colorlib-product">
 			<div class="container">
@@ -38,80 +92,42 @@
 						<form method="post" class="colorlib-form">
 							<h2>배송지 입력</h2>
 		              	<div class="row">
-			               <div class="col-md-12">
-			                  <div class="form-group">
-			                  	<label for="country">Select Country</label>
-			                     <div class="form-field">
-			                     	<i class="icon icon-arrow-down3"></i>
-			                        <select name="people" id="people" class="form-control">
-				                      	<option value="#">Select country</option>
-				                        <option value="#">Alaska</option>
-				                        <option value="#">China</option>
-				                        <option value="#">Japan</option>
-				                        <option value="#">Korea</option>
-				                        <option value="#">Philippines</option>
-			                        </select>
-			                     </div>
-			                  </div>
-			               </div>
-
-								<div class="col-md-6">
+		              			<div class="col-md-12">
 									<div class="form-group">
-										<label for="fname">이름</label>
-										<input type="text" id="fname" class="form-control" placeholder="Your firstname">
+										<label for="email">이름</label>
+										<input type="text" id="email" class="form-control" placeholder="이름" value = "${sessionScope.principal.member_name}">
 									</div>
 								</div>
-
 								<div class="col-md-12">
 									<div class="form-group">
-										<label for="companyname">Company Name</label>
-			                    	<input type="text" id="companyname" class="form-control" placeholder="Company Name">
-			                  </div>
-			               </div>
-
-			               <div class="col-md-12">
-									<div class="form-group">
-										<label for="fname">Address</label>
-			                    	<input type="text" id="address" class="form-control" placeholder="Enter Your Address">
-			                  </div>
-			                  <div class="form-group">
-			                    	<input type="text" id="address2" class="form-control" placeholder="Second Address">
-			                  </div>
-			               </div>
-			            
-			               <div class="col-md-12">
-									<div class="form-group">
-										<label for="companyname">Town/City</label>
-			                    	<input type="text" id="towncity" class="form-control" placeholder="Town or City">
-			                  </div>
-			               </div>
-			            
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="stateprovince">State/Province</label>
-										<input type="text" id="fname" class="form-control" placeholder="State Province">
+										<label for="fname">우편번호</label>
+										<input type="text" id="sample6_postcode" placeholder="우편번호" class="form-control">
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<label for="lname">Zip/Postal Code</label>
-										<input type="text" id="zippostalcode" class="form-control" placeholder="Zip / Postal">
+										<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" class="btn btn-primary"><br>
 									</div>
 								</div>
-							
-								<div class="col-md-6">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="companyname">주소</label>
+			                    		<input type="text" id="sample6_address" placeholder="주소" class="form-control"><br>
+										<input type="text" id="sample6_detailAddress" placeholder="상세주소" class="form-control">
+			                  		</div>
+			               		</div>
+								<div class="col-md-12">
 									<div class="form-group">
 										<label for="email">E-mail Address</label>
-										<input type="text" id="email" class="form-control" placeholder="State Province">
+										<input type="text" id="email" class="form-control" placeholder="이메일 주소" value = "${sessionScope.principal.member_address}">
 									</div>
 								</div>
-								<div class="col-md-6">
+								<div class="col-md-12">
 									<div class="form-group">
 										<label for="Phone">Phone Number</label>
-										<input type="text" id="zippostalcode" class="form-control" placeholder="">
+										<input type="text" id="zippostalcode" class="form-control" placeholder="핸드폰 번호" value = "${sessionScope.principal.member_phone}">
 									</div>
 								</div>
-
 								<div class="col-md-12">
 									<div class="form-group">
 										<div class="radio">
@@ -120,8 +136,8 @@
 										</div>
 									</div>
 								</div>
-		               </div>
-		            </form>
+		               		</div>
+		            	</form>
 					</div>
 
 					<div class="col-lg-4">
@@ -131,14 +147,17 @@
 									<h2>Cart Total</h2>
 									<ul>
 										<li>
-											<span>Subtotal</span> <span>$100.00</span>
+											<span>Subtotal</span> <span><%=Subtotal%> 원</span>
 											<ul>
-												<li><span>1 x Product Name</span> <span>$99.00</span></li>
-												<li><span>1 x Product Name</span> <span>$78.00</span></li>
+												<c:forEach var = "cart" items="${cartlist}">
+												<li><span>${cart.item_amount} x ${cart.item_name}	</span> <span>${cart.item_amount*cart.item_price} 원</span></li>
+												</c:forEach>
 											</ul>
+											
 										</li>
-										<li><span>Shipping</span> <span>$0.00</span></li>
-										<li><span>Order Total</span> <span>$180.00</span></li>
+										<li><span>Shipping</span> <span><%=Delivery%> 원</span></li>
+										<li><span>Discount</span> <span><%=Discount%> 원</span></li>
+										<li><span>Order Total</span> <span><%=orderTotal%> 원</span></li>
 									</ul>
 								</div>
 						   </div>
