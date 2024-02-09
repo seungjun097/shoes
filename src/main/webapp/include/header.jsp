@@ -87,7 +87,7 @@
 								<li class="active"><a href="/shoes/">Home</a></li>
 								<li><a href="/shoes/item?cmd=manlist">man</a></li>
 								<li><a href="/shoes/item?cmd=womanlist&page=0">Woman</a></li>
-                <li><a href="/shoes/board/List.jsp">board</a></li>
+               					<li><a href="/shoes/board/List.jsp">board</a></li>
 								<li class="cart"><a id="cartCount"></a></li>
 								
 								<%	
