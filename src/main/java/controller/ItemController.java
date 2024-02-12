@@ -25,6 +25,8 @@ public class ItemController extends HttpServlet {
     }
  
     protected void process(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    	req.setCharacterEncoding("utf-8");
+    	res.setContentType("text/html; charset=utf-8");
     	String cmd = req.getParameter("cmd");
     	ItemService itemService = new ItemService();
     	//여자신발 리스트

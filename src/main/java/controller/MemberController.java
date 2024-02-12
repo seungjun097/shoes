@@ -26,19 +26,21 @@ public class MemberController extends HttpServlet {
 
     public MemberController() {
         super();
-        
     }
 
     protected void process(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
     	//요청시 전달된 파라미터 값("cmd")을 반환
+    	req.setCharacterEncoding("utf-8");
+    	res.setContentType("text/html; charset=utf-8");
     	String cmd = req.getParameter("cmd");
     	System.out.println(cmd);
     	//서비스 객체 생성
-    	MemberService memberService = new MemberService();
+    	MemberService memberService;
     	
     	//회원정보 수정 폼페이지 요청
     	if(cmd.equals("editForm")) {
     		//세션생성
+    		memberService = new MemberService();
     		HttpSession session = req.getSession();
     		//세션에 담겨있는 Member리턴 
     		Member smember = (Member) session.getAttribute("principal");
@@ -53,7 +55,7 @@ public class MemberController extends HttpServlet {
     	
     	//회원정보 수정 기능 요청(post요청)
     	else if(cmd.equals("edit")) {
-    		res.setContentType("text/html; charset=utf-8");
+    		memberService = new MemberService();
     		int member_key = Integer.parseInt(req.getParameter("member_key"));
     		String member_name = req.getParameter("member_name");
     		String member_id = req.getParameter("member_id");
@@ -76,7 +78,8 @@ public class MemberController extends HttpServlet {
 			int result = 0;
 			result = memberService.edit(dto);
 			if(result!=0) { 
-				Script.alertMsg("회원정보가 수정 되었습니다.", "/shoes", res);
+				req.getRequestDispatcher("member?cmd=login")
+        		.forward(req, res);
 			}else { 
 				Script.back("회원정보 수정 실패", res);
 			}
@@ -85,12 +88,12 @@ public class MemberController extends HttpServlet {
     	
     	//회원정보 삭제 요청
     	else if(cmd.equals("delete")) {
+    		memberService = new MemberService();
     		int member_key = Integer.parseInt(req.getParameter("member_key"));
-    		System.out.println("들어갈 때"+member_key);
     		int result = memberService.delete(member_key);
-    		System.out.println("나온 값"+result);
     		if(result==1) {
-    			res.sendRedirect("index.jsp");
+    			req.getRequestDispatcher("member?cmd=logout")
+        		.forward(req, res);
     		}else {
     			Script.back("삭제실패", res);
     		}
@@ -104,7 +107,6 @@ public class MemberController extends HttpServlet {
     	
     	//로그아웃 요청
     	}else if(cmd.equals("logout")) {
-    		System.out.println("로그아웃 요청");
     		HttpSession session = req.getSession();
     		session.invalidate();
     		res.sendRedirect("index.jsp");
@@ -119,7 +121,8 @@ public class MemberController extends HttpServlet {
     	
     	//회원가입 기능 요청(post요청)
     	else if(cmd.equals("join")) {
-    		res.setContentType("text/html; charset=utf-8");
+    		memberService = new MemberService();
+    		
     		String member_name = req.getParameter("member_name");
     		String member_id = req.getParameter("member_id");
     		String member_pw = req.getParameter("member_pw");
@@ -147,9 +150,9 @@ public class MemberController extends HttpServlet {
     	//아이디 중복확인 체크(ajax요청)
     	else if(cmd.equals("member_idCheck")) {
     		//1.입력스트림 생성(폼전송이 아닐때)
+    		memberService = new MemberService();
     		BufferedReader br = req.getReader();
     		String member_id = br.readLine();
-    		System.out.println("아이디는 : " + member_id);
     		int result = memberService.member_idCheck(member_id);
     		PrintWriter out = res.getWriter();
     		if(result==0) {
@@ -163,6 +166,7 @@ public class MemberController extends HttpServlet {
     	
     	//로그인 기능 요청(post요청)
     	else if(cmd.equals("login")) {
+    		memberService = new MemberService();
     		String member_id = req.getParameter("member_id");
     		String member_pw = req.getParameter("member_pw");
     		LoginReqDto dto = new LoginReqDto();

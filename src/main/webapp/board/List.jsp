@@ -11,11 +11,9 @@
 <%@ include file="/include/header.jsp" %>
 	<%
 		//DAO를 생성해 DB에 연결
-		BoardDAO dao = new BoardDAO();
 		//사용자가 입력한 검색조건을 Map에 저장
-		//Map<String, Object> param = new HashMap<String, Object>();
-		
-		List<BoardDTO> boardLists = dao.boardlist();
+		//Map<String, Object> param = new HashMap<String,Object>();	
+		List<BoardDTO> boardLists = (List<BoardDTO>) request.getAttribute("boardList");
 	%>
 	<h2>목록보기</h2>
 	<!-- 검색폼 -->
@@ -45,7 +43,7 @@
 		</tr>
 		<!-- 목록의 내용 -->
 <%
-	if(boardLists.isEmpty()){
+	if(boardLists == null){
 		//게시물이 하나도 없을 때 
 	
 %>
@@ -63,8 +61,8 @@
 %>
  <tr>
  	<td align="center"><%=dto.getMember_key() %></td>
- 	<td align="center"><a href="View.jsp?num=<%= dto.getBoard_key()%>"><%=dto.getBoard_title()%></td>
- 	<td align="center"><%=dto.getMember_name() %></td>
+ 	<td align="center"><a href="board?cmd=view&num=<%= dto.getBoard_key()%>"><%=dto.getBoard_title()%></td>
+ 	<td align="center"><%=dto.getMember_name() %></td>	
  	<td align="center"><%=dto.getBoard_date() %></td>
  	<td align="center"><%=dto.getBoard_visitcount() %></td>
  </tr>
@@ -77,8 +75,14 @@
 	<!-- 목록 하단의 글쓰기 버튼 -->
 	<table border="1" width="90%">
 		<tr align="center">
-			<td><button type="button" onclick="location.href='Write.jsp';">글쓰기
+<%
+if(session.getAttribute("principal") != null) {
+%>
+			<td><button type="button" onclick="location.href='board/Write.jsp';">글쓰기
 			</button></td>
+<%
+}	
+%>
 		</tr>
 	</table>
 	

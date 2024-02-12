@@ -1,12 +1,14 @@
 package domain.board;
 
+import java.sql.Date;
+
 public class BoardDTO {
 	//멤버 변수 선언
 	private String board_key;  //num
 	private String member_key;	//id
 	private String board_content;
 	private String board_title;
-	private java.sql.Date board_date;
+	private Date board_date;
 	private String board_visitcount;
 	private String member_name;
 	public String getBoard_key() {

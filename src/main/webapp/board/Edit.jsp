@@ -7,9 +7,7 @@
     pageEncoding="UTF-8"%>
     <%@ include file="/include/header.jsp" %>
 <%
-	String num = request.getParameter("num");
-	BoardDAO dao = new BoardDAO();
-	BoardDTO dto = dao.selectView(num);
+	BoardDTO dto = (BoardDTO) request.getAttribute("boardDto");
 	//일련번호받기		//게시물가져오기
 %>
 
@@ -32,7 +30,7 @@
 </script>
 	<h2>게시판 - 수정하기(Edit)</h2>
 	<!-- 폼의 이름 전송방식 전송경로 지정 -->
-	<form name="writeFrm" method="post" action="EditProcess.jsp"
+	<form name="writeFrm" method="post" action="board?cmd=editprocess"
 		onsubmit="return validateFrom(this);">
 		<input type="hidden" name="num" value="<%=dto.getBoard_key()%>" />
 		<table border="1" width="90%">
@@ -53,7 +51,7 @@
 				<td colspan="2" align="center">
 					<button type="submit">작성 완료</button>
 					<button type="reset">다시 입력</button>
-					<button type="button" onclick="location.href='List.jsp';">
+					<button type="button" onclick="board?cmd=list'">
 					목록보기</button>
 				</td>
 			</tr>

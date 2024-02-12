@@ -38,7 +38,6 @@ public class MemberService {
 	
 	//회원정보 조회
 	public Member memberlist(int member_key) {
-		this.memberDao = new MemberDao();
 		return memberDao.memberlist(member_key);
 	}
 	

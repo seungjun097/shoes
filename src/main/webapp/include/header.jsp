@@ -38,10 +38,10 @@
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/file/css/style.css">
 	<!-- jquery -->
-	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 	
 	<script>
-	$(document).ready(function() {
+	/* $(document).ready(function() {
 	    $.ajax({
     		type: "post",
     		url: "/shoes/cart?cmd=cartlistnum",
@@ -55,7 +55,7 @@
 	        	console.log("카트 num호출 실패");
 	        }
 	    });
-	});
+	}); */
 	</script>
 	
 	</head>
@@ -87,7 +87,7 @@
 								<li class="active"><a href="/shoes/">Home</a></li>
 								<li><a href="/shoes/item?cmd=manlist">man</a></li>
 								<li><a href="/shoes/item?cmd=womanlist&page=0">Woman</a></li>
-               					<li><a href="/shoes/board/List.jsp">board</a></li>
+               					<li><a href="/shoes/board?cmd=list">board</a></li>
 								<li class="cart"><a id="cartCount"></a></li>
 								
 								<%	
