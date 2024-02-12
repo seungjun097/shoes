@@ -23,7 +23,7 @@
 
 	<h2>게시판 - 글쓰기</h2>
 	<!-- 폼의 이름 전송방식 전송경로 지정 -->
-	<form name="writeFrm" method="post" action="WriteProcess.jsp"
+	<form name="writeFrm" method="post" action="/shoes/board?cmd=write"
 		onsubmit="return validateFrom(this);">
 		<table border="1" width="90%">
 			<tr>
@@ -35,8 +35,7 @@
 			<tr>
 				<td>내용</td>
 				<td>
-					<textarea name="board_content" style="width: 90%; height: 100px;"  >
-					</textarea>
+					<textarea name="board_content" style="width: 90%; height: 100px;"  ></textarea>
 				</td>
 			</tr>
 			<tr>

@@ -18,7 +18,7 @@
 		                    	</div>
 		                    	<div class="form-group">
 									<label>비밀번호</label>
-		                    	<input type="text" name="member_pw" class="form-control" placeholder="비밀번호" required>
+		                    	<input type="password" name="member_pw" class="form-control" placeholder="비밀번호" required>
 		              			</div>
 		               		</div>
 							<div class="col-md-12">

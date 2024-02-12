@@ -27,9 +27,10 @@ public class CartController extends HttpServlet {
       
     
     protected void process(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    	req.setCharacterEncoding("utf-8");
+    	res.setContentType("text/html; charset=utf-8");
     	String cmd = req.getParameter("cmd");
     	Cartservice cartservice = new Cartservice();
-    	res.setContentType("text/html; charset=utf-8");
     	
     	if(cmd.equals("save")) {
     		BufferedReader br = req.getReader();

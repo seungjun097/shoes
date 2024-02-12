@@ -122,7 +122,6 @@ public class MemberDao extends DBConnect{
 		}finally {
 			close();
 		}
-		System.out.println("회원수정 : "+result);
 		return result;
 	}
 	
