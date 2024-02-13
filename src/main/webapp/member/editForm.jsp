@@ -96,8 +96,8 @@
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="companyname">주소</label>
-			                    		<input type="text" id="sample6_address" placeholder="주소" class="form-control" value= <%=main_address%> required><br>
-										<input type="text" id="sample6_detailAddress" placeholder="상세주소" class="form-control" value= <%=detail_address%> required>
+			                    		<input type="text" id="sample6_address" placeholder="주소" class="form-control" value="<%=main_address%>" required><br>
+										<input type="text" id="sample6_detailAddress" placeholder="상세주소" class="form-control" value= "<%=detail_address%>" required>
 										<input type="hidden" id="member_address" name ="member_address">
 			                  		</div>
 			               		</div>

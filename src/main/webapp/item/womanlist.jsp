@@ -2,7 +2,6 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
 <%@ include file="../include/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script>
@@ -14,7 +13,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col">
-						<p class="bread"><span><a href="index.html">Home</a></span> / <span>Women</span></p>
+						<p class="bread"><span><a href="index.jsp">Home</a></span> / <span>Women</span></p>
 					</div>
 				</div>
 			</div>
@@ -62,11 +61,11 @@
 								<div class="side border mb-1">
 									<h3>Category</h3>
 									<ul>
-										<li><a href="#">러닝화</a></li>
-										<li><a href="#">부츠</a></li>
+										<li><a href="#">스니커즈</a></li>
 										<li><a href="#">구두</a></li>
-										<li><a href="#">슬리퍼</a></li>
-										<li><a href="#">샌들</a></li>
+										<li><a href="#">농구화</a></li>
+										<li><a href="#">등산화</a></li>
+										<li><a href="#">런닝화</a></li>
 									</ul>
 								</div>
 							</div>
