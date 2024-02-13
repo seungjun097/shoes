@@ -83,7 +83,7 @@
 							<ul>
 								<li><span id ="cartCount"></span></li>
 								<li class="active"><a href="/shoes/">Home</a></li>
-								<li><a href="/shoes/item?cmd=manlist">man</a></li>
+								<li><a href="/shoes/item?cmd=manlist&page=0">man</a></li>
 								<li><a href="/shoes/item?cmd=womanlist&page=0">Woman</a></li>
                					<li><a href="/shoes/board?cmd=list">board</a></li>							
 								<%	

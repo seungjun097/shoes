@@ -11,6 +11,16 @@
 # 비번 확인칸 만들기
 # 아이디 비번 형식 검사 문자 숫자포함 체크
 
-# 2. table
+# 2. item
 # 헤더의 검색기능 활성화. 페이지 이동 추가
 # 리플달기 별점 추가
+
+#
+create table cart(
+    cart_key number not null primary key,
+    member_key number references member(member_key) on delete set null,
+    item_key number references item(item_key) on delete set null,
+    item_size number not null,
+    item_amount number not null,
+    cart_add_date date default sysdate not null
+);

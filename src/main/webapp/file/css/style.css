@@ -474,14 +474,16 @@ pre {
   margin-right: auto;
   margin-left: auto; }
 
-.row {
+.row {   
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   margin-right: -15px;
-  margin-left: -15px; }
+  margin-left: -15px;
+  
+  }
 
 .no-gutters {
   margin-right: 0;
@@ -7725,7 +7727,7 @@ h1, h2, h3, h4, h5,
       font-weight: 400; }
 
 .block-27 ul, .block-27 ul li {
-  padding: 0;
+  padding-left: 271px;
   margin: 0;
   list-style: none; }
 
