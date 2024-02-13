@@ -11,11 +11,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+
 import domain.member.Member;
 import domain.member.MemberDao;
 import domain.member.dto.EditReqDto;
 import domain.member.dto.JoinReqDto;
+import domain.member.dto.LoginKakaoReqDto;
 import domain.member.dto.LoginReqDto;
+
 import service.MemberService;
 import util.Script;
 
@@ -147,13 +151,13 @@ public class MemberController extends HttpServlet {
     		}
     	}
     	
-    	//아이디 중복확인 체크(ajax요청)
-    	else if(cmd.equals("member_idCheck")) {
+    	//이메일 중복확인 체크(ajax요청)
+    	else if(cmd.equals("member_emailCheck")) {
     		//1.입력스트림 생성(폼전송이 아닐때)
     		memberService = new MemberService();
     		BufferedReader br = req.getReader();
-    		String member_id = br.readLine();
-    		int result = memberService.member_idCheck(member_id);
+    		String member_email = br.readLine();
+    		int result = memberService.member_emailCheck(member_email);
     		PrintWriter out = res.getWriter();
     		if(result==0) {
     			out.print("ok");
@@ -167,10 +171,10 @@ public class MemberController extends HttpServlet {
     	//로그인 기능 요청(post요청)
     	else if(cmd.equals("login")) {
     		memberService = new MemberService();
-    		String member_id = req.getParameter("member_id");
+    		String member_email = req.getParameter("member_email");
     		String member_pw = req.getParameter("member_pw");
     		LoginReqDto dto = new LoginReqDto();
-    		dto.setMember_id(member_id);
+    		dto.setMember_email(member_email);
     		dto.setMember_pw(member_pw);
     		Member memberEntity = memberService.login(dto);
     		if(memberEntity!=null) {
@@ -182,6 +186,36 @@ public class MemberController extends HttpServlet {
     		}
     	}
     	
+    	//카카오 로그인 요청(post요청 ajax요청)
+    	else if(cmd.equals("kakaologin")) {
+    		//요청 문자 인코딩 설정
+    		req.setCharacterEncoding("utf-8");
+    		memberService = new MemberService();
+    		//외부 데이터를 읽기 위한 입력 스트림 생성(폼전송이 아닌경우)
+    		BufferedReader br = req.getReader();
+    		//readLine() 외부데이터 읽어서 문자열로 리턴
+    		String data = br.readLine();
+    		
+    		System.out.println("여기에요 : " + data);
+    		//json --> 자바객체로 컨버팅
+    		Gson gson = new Gson();
+    		LoginKakaoReqDto dto = gson.fromJson(data, LoginKakaoReqDto.class);
+    		System.out.println("로그인 dto: "+ dto);
+    		//서비스에서 요청 후 Member타입으로 리턴
+    		Member memberEntity = memberService.kakaologin(dto);
+    		//응답하기 위한 출력스트림 생성
+    		PrintWriter out = res.getWriter();
+    		//로그인처리를 위한 세션 생성
+    		HttpSession session = req.getSession();
+    		session.setAttribute("kakao", dto); //이 정보로 접근해서 회원가입
+    		if(memberEntity!=null) {
+    			session.setAttribute("principal", memberEntity);
+    			out.print("ok");
+    		}else {
+    			out.print("fail");
+    		}
+    		
+    	}
     	
     }
     

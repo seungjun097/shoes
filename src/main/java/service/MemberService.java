@@ -4,6 +4,7 @@ import domain.member.Member;
 import domain.member.MemberDao;
 import domain.member.dto.EditReqDto;
 import domain.member.dto.JoinReqDto;
+import domain.member.dto.LoginKakaoReqDto;
 import domain.member.dto.LoginReqDto;
 
 public class MemberService {
@@ -22,13 +23,18 @@ public class MemberService {
 	}
 
 	//아이디중복체크
-	public int member_idCheck(String member_id) { 
-		return memberDao.findById(member_id); 
+	public int member_emailCheck(String member_email) { 
+		return memberDao.findByEmail(member_email); 
 	}
   
 	//로그인
 	public Member login(LoginReqDto dto) {
-		return memberDao.findBymember_idAndMember_pw(dto);
+		return memberDao.findBymember_IdAndMember_pw(dto);
+	}
+	
+	//카카오로그인
+	public Member kakaologin(LoginKakaoReqDto dto) {
+		return memberDao.findBymember_emailAndMember_id(dto);
 	}
 	
 	//회원정보수정
