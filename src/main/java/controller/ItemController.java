@@ -40,9 +40,16 @@ public class ItemController extends HttpServlet {
     		req.setAttribute("lastpage", lastpage);
     		req.getRequestDispatcher("/item/womanlist.jsp")
     		.forward(req, res);
+    	//남자신발 리스트
     	}else if(cmd.equals("manlist")) {
-    		List<Item> items = itemService.manList();
+    		System.out.println("man컨트롤러작동");
+    		int page = Integer.parseInt(req.getParameter("page"));
+    		List<Item> items = itemService.manList(page);
     		req.setAttribute("items", items);
+    		req.setAttribute("page", page);
+    		int total = itemService.pagenum();
+    		int lastpage = (total-1)/5;
+    		req.setAttribute("lastpage", lastpage);
     		req.getRequestDispatcher("/item/manlist.jsp")
     		.forward(req, res);
     	}else if(cmd.equals("itemdetail")) {
