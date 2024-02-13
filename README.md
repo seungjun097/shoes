@@ -22,6 +22,5 @@ create table cart(
     item_key number references item(item_key) on delete set null,
     item_size number not null,
     item_amount number not null,
-    cart_order_num number not null,
     cart_add_date date default sysdate not null
 );
