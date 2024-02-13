@@ -99,8 +99,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-md-8">
+				
+					<div class="container">
 							<h2>회원정보 기입</h2>
 						<form action="/shoes/member?cmd=join" method="post" class="colorlib-form" onsubmit="return valid()">	
 		              	<div class="row">
@@ -170,7 +170,7 @@
 		               </div>
 		            </form>
 					</div>
-				</div>
+				
 			</div>
 		</div>
 		<script>

@@ -13,7 +13,15 @@
 	String Discount = request.getParameter("Discount");
 	int orderTotal = Subtotal+Integer.parseInt(Delivery)-Integer.parseInt(Discount);
 	Member member = (Member) session.getAttribute("principal");
-	
+	String postAddress = "";
+	String mainAddress = "";
+	String detailAddress = "";
+	if(member.getMember_address().contains("@")) {
+		String[] adress = member.getMember_address().split("@");
+		postAddress = adress[0];
+		mainAddress = adress[1];
+		detailAddress = adress[2];
+	}
 %>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -101,39 +109,31 @@
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="fname">우편번호</label>
-										<input type="text" id="sample6_postcode" placeholder="우편번호" class="form-control">
+										<input type="text" id="sample6_postcode" placeholder="우편번호" class="form-control" value = "<%=postAddress%>">
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" class="btn btn-primary"><br>
+										<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" class="btn btn-primary">
 									</div>
 								</div>
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="companyname">주소</label>
-			                    		<input type="text" id="sample6_address" placeholder="주소" class="form-control"><br>
-										<input type="text" id="sample6_detailAddress" placeholder="상세주소" class="form-control">
+			                    		<input type="text" id="sample6_address" placeholder="주소" class="form-control" value = "<%=mainAddress%>">
+										<input type="text" id="sample6_detailAddress" placeholder="상세주소" class="form-control" value = "<%=detailAddress%>">
 			                  		</div>
 			               		</div>
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="email">E-mail Address</label>
-										<input type="text" id="email" class="form-control" placeholder="이메일 주소" value = "${sessionScope.principal.member_address}">
+										<input type="text" id="email" class="form-control" placeholder="이메일 주소" value = "${sessionScope.principal.member_email}">
 									</div>
 								</div>
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="Phone">Phone Number</label>
 										<input type="text" id="zippostalcode" class="form-control" placeholder="핸드폰 번호" value = "${sessionScope.principal.member_phone}">
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-										<div class="radio">
-										  <label><input type="radio" name="optradio"> Create an Account? </label>
-										  <label><input type="radio" name="optradio"> Ship to different address</label>
-										</div>
 									</div>
 								</div>
 		               		</div>

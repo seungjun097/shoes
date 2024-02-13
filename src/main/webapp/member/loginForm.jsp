@@ -55,8 +55,8 @@
 
 			<div class="container">
 				
-				<div class="row">
-					<div class="col-lg-8">
+				
+					<div class="container">
 						
 						<h2>ID 로그인</h2>
 						<form action="/shoes/member?cmd=login" method="post" class="colorlib-form">	
@@ -92,7 +92,7 @@
 						</a></p>
 					</div>
 					</div>
-				</div>
+				
 			</div>
 		</div>
 <%@ include file="../include/footer.jsp"%>

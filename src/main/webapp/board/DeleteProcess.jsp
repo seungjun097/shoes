@@ -10,7 +10,8 @@
 	BoardDAO dao = new BoardDAO();
 		int delResult = 0;
 		dto.setBoard_key(num);
-		//delResult = dao.deletePost(dto);
+    
+		/* delResult = dao.deletePost(dto); */
 		dao.close();
 		
 		//성공or실패처리

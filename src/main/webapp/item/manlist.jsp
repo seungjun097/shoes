@@ -8,7 +8,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col">
-						<p class="bread"><span><a href="index.html">Home</a></span> / <span>Men</span></p>
+						<p class="bread"><span><a href="index.jsp">Home</a></span> / <span>Men</span></p>
 					</div>
 				</div>
 			</div>
@@ -52,18 +52,20 @@
 					            </div>
 								</div>
 							</div>
+							
 							<div class="col-sm-12">
 								<div class="side border mb-1">
 									<h3>Category</h3>
 									<ul>
-										<li><a href="#">러닝화</a></li>
-										<li><a href="#">워커</a></li>
-										<li><a href="#">슬리퍼</a></li>
-										<li><a href="#">스니커즈</a></li>
-										<li><a href="#">구두</a></li>
+										<li><a href="shoes/item?cmd=manlist&category=스니커즈" name="스니커즈">스니커즈</a></li>
+										<li><a href="#" name="스니커즈">구두</a></li>
+										<li><a href="#">농구화</a></li>
+										<li><a href="#">등산화</a></li>
+										<li><a href="#">런닝화</a></li>
 									</ul>
 								</div>
 							</div>
+						
 							<div class="col-sm-12">
 								<div class="side border mb-1">
 									<h3>Colors</h3>
