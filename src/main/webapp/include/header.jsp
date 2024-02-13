@@ -39,9 +39,8 @@
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/file/css/style.css">
 	<!-- jquery -->
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-	
 	<script>
-	/* $(document).ready(function() {
+	$(document).ready(function() {
 	    $.ajax({
     		type: "post",
     		url: "/shoes/cart?cmd=cartlistnum",
@@ -55,12 +54,10 @@
 	        	console.log("카트 num호출 실패");
 	        }
 	    });
-	}); */
+	});
 	</script>
-	
 	</head>
-	<body>
-		
+
 	<div class="colorlib-loader"></div>
 
 	<div id="page">
@@ -80,30 +77,28 @@
 			            </form>
 			         </div>
 		         </div>
-		         	
+		         
 					<div class="row">
 						<div class="col-sm-12 text-left menu-1">
 							<ul>
+								<li><span id ="cartCount"></span></li>
 								<li class="active"><a href="/shoes/">Home</a></li>
 								<li><a href="/shoes/item?cmd=manlist">man</a></li>
 								<li><a href="/shoes/item?cmd=womanlist&page=0">Woman</a></li>
-               					<li><a href="/shoes/board?cmd=list">board</a></li>
-								<li class="cart"><a id="cartCount"></a></li>
-								
+               					<li><a href="/shoes/board?cmd=list">board</a></li>							
 								<%	
 									if(session.getAttribute("principal")==null) { //로그아웃 일때는 '로그인과 회원가입' 메뉴가 보이고
 				 				%>
 								<li class="cart"><a href="/shoes/member?cmd=joinForm">join</a></li>
 								<li class="cart"><a href="/shoes/member?cmd=loginForm">login</a></li>
 								<%
-									}
-									else {	//로그인 일때는 '로그아웃과 회원정보수정' 메뉴가 보이게 해라
-								%>							
-								<li class="cart"><a href="/shoes/cart?cmd=list"><i class="icon-shopping-cart"></i> cart [0]</a></li>
+									}else {	//로그인 일때는 '로그아웃과 회원정보수정' 메뉴가 보이게 해라
+								%>
+								<li class="cart"><a href="/shoes/cart?cmd=list"><i class="icon-shopping-cart"></i> Cart [0]</a></li>							
 								<li class="cart"><a href="/shoes/member?cmd=editForm">회원정보 수정</a></li>
 								<li class="cart"><a href="/shoes/member?cmd=logout">로그아웃</a></li>
 								<%
-									}
+									};
 								%>
 							</ul>
 						</div>
