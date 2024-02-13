@@ -3,7 +3,7 @@ package domain.member.dto;
 import lombok.Data;
 
 @Data
-public class LoginReqDto {
+public class LoginKakaoReqDto {
 	private String member_email;
-	private String member_pw;
+	private String member_id;
 }

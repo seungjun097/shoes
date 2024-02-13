@@ -40,6 +40,35 @@
 	<!-- jquery -->
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 	
+	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+	<script>
+  	function logoutFun(){
+  		//카카오로그인 사용자인지?
+  		let str = "${sessionScope.kakao.member_id}";
+  		//카카오로그인 사용시 카카오 로그아웃 처리 후 사이트 로그아웃 처리
+  		if(str){
+  			kakaoLogout();
+  		}else{
+  			location.href="/shoes/member?cmd=logout"; //로그아웃 요청
+  		}
+  	}
+  	function kakaoLogout(){
+  		Kakao.init('bac6e97cacea3e5ae4a416a83b6e45e8'); // 사용하려는 앱의 JavaScript 키 입력
+  		if (Kakao.Auth.getAccessToken()) {
+  	      Kakao.API.request({
+  	          url: '/v1/user/unlink',
+  	          success: function (response) {
+  	              console.log(response);
+  	              location.href="/shoes/member?cmd=logout";
+  	          },
+  	          fail: function (error) {
+  	          console.log(error)
+  	          },
+  	      })
+  	      Kakao.Auth.setAccessToken(undefined)
+  	      }
+  	}
+  </script>
 	<script>
 	/* $(document).ready(function() {
 	    $.ajax({
@@ -101,7 +130,7 @@
 								%>							
 								<li class="cart"><a href="/shoes/cart?cmd=list"><i class="icon-shopping-cart"></i> cart [0]</a></li>
 								<li class="cart"><a href="/shoes/member?cmd=editForm">회원정보 수정</a></li>
-								<li class="cart"><a href="/shoes/member?cmd=logout">로그아웃</a></li>
+								<li class="cart" onclick="logoutFun()"><a href="javascript:void(0)">로그아웃</a></li>
 								<%
 									}
 								%>

@@ -47,7 +47,7 @@
 		
 		function valid(){
 			if(!isChecking){
-				alert("아이디 중복체크를 해주세요");
+				alert("email 중복체크를 해주세요");
 			}else {
 			var postcode = $('#sample6_postcode').val();
 		    var address = $('#sample6_address').val();
@@ -57,24 +57,24 @@
 			}
 			return isChecking;
 		}
-		function idcheck(){
+		function emailcheck(){
 			//input의 값을 member_id변수에 할당
-			let member_id = $("#member_id").val();
-			console.log(member_id);
+			let member_email = $("#member_email").val();
+			console.log(member_email);
 			//네트워크 요청
 			$.ajax({
 				type: "POST",
-				url: "/shoes/member?cmd=member_idCheck", //요청경로
+				url: "/shoes/member?cmd=member_emailCheck", //요청경로
 				data: member_id, //body에 보낼데이터(get은 못씀)
 				contentType: "text/plain; charset=utf-8", //보낼데이터 mime타입
 				dataType: "text" //응답받을 데이터 타입
 			}).done(function(data){
-				//멤버아이디가 중복되지 않으면 ok를 전송
+				//이메일이 중복되지 않으면 ok를 전송
 				if(data=="ok"){
 					isChecking = true;
-					alert("사용가능한 아이디 입니다.");
+					alert("사용가능한 이메일 입니다.");
 				}else {
-					alert("이미 사용하고 있는 아이디 입니다.");
+					alert("이미 사용하고 있는 이메일 입니다.");
 					isChecking = false;
 				}
 			})
@@ -110,11 +110,7 @@
 			                    	<input type="text" id="member_id" name="member_id" class="form-control" placeholder="영문/특수문자를 이용한 6~8자리이상" required>
 			                    	</div>
 			                    </div>
-			                    <div class="col-md-6">
-			                    	<div class="form-group">
-			                    		<button class="btn btn-primary" type="button" onclick="idcheck()" >아이디 중복체크</button>
-			                    	</div>
-			                    </div>
+			                    
 			                    <div class="col-md-12">
 			                    	<div class="form-group">
 										<label>비밀번호</label>
@@ -149,6 +145,11 @@
 										<label>이메일</label>
 										<input type="text" name="member_email" class="form-control" placeholder="이메일" required>
 									</div>
+									<div class="col-md-6">
+			                    	<div class="form-group">
+			                    		<button class="btn btn-primary" type="button" onclick="emailcheck()" >이메일 중복체크</button>
+			                    	</div>
+			                    </div>
 									<div class="form-group">
 										<label>휴대폰 번호</label>
 										<input type="text" name="member_phone" class="form-control" placeholder="휴대폰 번호" required>
@@ -172,5 +173,16 @@
 				</div>
 			</div>
 		</div>
+		<script>
+			let member_email = "${sessionScope.kakao.member_email}"; //세션에 없으면 빈 문장이므로 false이다
+			let member_id = "${sessionScope.kakao.member_id}";
+			if(email){
+				isChecking = true;
+				$("#member_email").val(member_email);
+				$("#member_email").attr("readonly", true); //이메일 그대로 넣겠다, 수정 할 수 없게 함
+				$("#member_id").val(member_id);
+				$("#member_id").attr("readonly", true); //아이디 그대로 넣겠다, 수정 할 수 없게 함
+			}
+		</script>
 <%@ include file="../include/footer.jsp"%>
     
