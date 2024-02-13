@@ -10,9 +10,7 @@
 	int Subtotal = cartlist.stream().mapToInt(i -> i.getItem_amount()*i.getItem_price()).sum();
 	int Delivery = 3000;
 	int Discount = 0;
-	
 %>
-
 		<div class="breadcrumbs">
 			<div class="container">
 				<div class="row">
