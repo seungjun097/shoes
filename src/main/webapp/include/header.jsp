@@ -69,7 +69,7 @@
   	      }
   	}
   </script>
-	<script>
+	<!-- <script>
 	$(document).ready(function() {
 	    $.ajax({
     		type: "post",
@@ -85,7 +85,7 @@
 	        }
 	    });
 	});
-	</script>
+	</script> -->
 	</head>
 
 	<div class="colorlib-loader"></div>
