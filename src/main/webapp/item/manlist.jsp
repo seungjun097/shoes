@@ -57,11 +57,11 @@
 								<div class="side border mb-1">
 									<h3>Category</h3>
 									<ul>
-										<li><a href="shoes/item?cmd=manlist&category=스니커즈" name="스니커즈">스니커즈</a></li>
-										<li><a href="#" name="스니커즈">구두</a></li>
-										<li><a href="#">농구화</a></li>
-										<li><a href="#">등산화</a></li>
-										<li><a href="#">런닝화</a></li>
+										<li><a href="item?cmd=manlist&page=${page}&category=스니커즈">스니커즈</a></li>
+										<li><a href="item?cmd=manlist&page=${page}&category=구두">구두</a></li>
+										<li><a href="item?cmd=manlist&page=${page}&category=농구화">농구화</a></li>
+										<li><a href="item?cmd=manlist&page=${page}&category=등산화">등산화</a></li>
+										<li><a href="item?cmd=manlist&page=${page}&category=런닝화">런닝화</a></li>
 									</ul>
 								</div>
 							</div>
@@ -110,19 +110,19 @@
 				               <ul>
 						               <c:choose>
 							               <c:when test="${page==0}">
-								                <li><a href="item?cmd=manlist&page=${page-1}"><i class="ion-ios-arrow-back"></i></a></li>
+								                <li><a href="item?cmd=manlist&page=${page-1}&category=${category}"><i class="ion-ios-arrow-back"></i></a></li>
 								           </c:when>
 								           <c:otherwise>
-								           		<li><a href="item?cmd=manlist&page=${page-1}"><i class="ion-ios-arrow-back" ></i></a></li>
+								           		<li><a href="item?cmd=manlist&page=${page-1}&category=${category}"><i class="ion-ios-arrow-back" ></i></a></li>
 								           </c:otherwise>
 						                </c:choose>
 						                
 						                <c:choose>
 							               <c:when test="${page==lastpage}">
-								                <li><a href="item?cmd=manlist&page=${page+1}"><i class="ion-ios-arrow-forward"></i></a></li>
+								                <li><a href="item?cmd=manlist&page=${page+1}&category=${category}"><i class="ion-ios-arrow-forward"></i></a></li>
 								           </c:when>
 								           <c:otherwise>
-								           		<li><a href="item?cmd=manlist&page=${page+1}"><i class="ion-ios-arrow-forward" ></i></a></li>
+								           		<li><a href="item?cmd=manlist&page=${page+1}&category=${category}"><i class="ion-ios-arrow-forward" ></i></a></li>
 								           </c:otherwise>
 						                </c:choose>
 						              

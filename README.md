@@ -15,6 +15,7 @@
 # 헤더의 검색기능 활성화. 페이지 이동 추가
 # 리플달기 별점 추가
 
+
 # 깃 이그노어 파일 적용 안될 때 캐쉬 비우기 git rm -r --cached .
 
 #
@@ -26,4 +27,3 @@ create table cart(
     item_amount number not null,
     cart_add_date date default sysdate not null
 );
-
