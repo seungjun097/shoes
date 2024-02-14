@@ -24,3 +24,4 @@ create table cart(
     item_amount number not null,
     cart_add_date date default sysdate not null
 );
+#깃 이그노어 파일 적용 안될 때 캐쉬 비우기 git rm -r --cached .
