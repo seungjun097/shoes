@@ -40,8 +40,37 @@
 	<!-- jquery -->
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 	
+	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 	<script>
-	/* $(document).ready(function() {
+  	function logoutFun(){
+  		//카카오로그인 사용자인지?
+  		let str = "${sessionScope.kakao.member_id}";
+  		//카카오로그인 사용시 카카오 로그아웃 처리 후 사이트 로그아웃 처리
+  		if(str){
+  			kakaoLogout();
+  		}else{
+  			location.href="/shoes/member?cmd=logout"; //로그아웃 요청
+  		}
+  	}
+  	function kakaoLogout(){
+  		Kakao.init('bac6e97cacea3e5ae4a416a83b6e45e8'); // 사용하려는 앱의 JavaScript 키 입력
+  		if (Kakao.Auth.getAccessToken()) {
+  	      Kakao.API.request({
+  	          url: '/v1/user/unlink',
+  	          success: function (response) {
+  	              console.log(response);
+  	              location.href="/shoes/member?cmd=logout";
+  	          },
+  	          fail: function (error) {
+  	          console.log(error)
+  	          },
+  	      })
+  	      Kakao.Auth.setAccessToken(undefined)
+  	      }
+  	}
+  </script>
+	<script>
+	$(document).ready(function() {
 	    $.ajax({
     		type: "post",
     		url: "/shoes/cart?cmd=cartlistnum",
@@ -55,12 +84,10 @@
 	        	console.log("카트 num호출 실패");
 	        }
 	    });
-	}); */
+	});
 	</script>
-	
 	</head>
-	<body>
-		
+
 	<div class="colorlib-loader"></div>
 
 	<div id="page">
@@ -80,30 +107,28 @@
 			            </form>
 			         </div>
 		         </div>
-		         	
+		         
 					<div class="row">
 						<div class="col-sm-12 text-left menu-1">
 							<ul>
+								<li><span id ="cartCount"></span></li>
 								<li class="active"><a href="/shoes/">Home</a></li>
 								<li><a href="/shoes/item?cmd=manlist&page=0&category=null">man</a></li>
 								<li><a href="/shoes/item?cmd=womanlist&page=0">Woman</a></li>
-               					<li><a href="/shoes/board?cmd=list">board</a></li>
-								<li class="cart"><a id="cartCount"></a></li>
-								
+               					<li><a href="/shoes/board?cmd=list">board</a></li>							
 								<%	
 									if(session.getAttribute("principal")==null) { //로그아웃 일때는 '로그인과 회원가입' 메뉴가 보이고
 				 				%>
 								<li class="cart"><a href="/shoes/member?cmd=joinForm">join</a></li>
 								<li class="cart"><a href="/shoes/member?cmd=loginForm">login</a></li>
 								<%
-									}
-									else {	//로그인 일때는 '로그아웃과 회원정보수정' 메뉴가 보이게 해라
-								%>							
-								<li class="cart"><a href="/shoes/cart?cmd=list"><i class="icon-shopping-cart"></i> cart [0]</a></li>
+									}else {	//로그인 일때는 '로그아웃과 회원정보수정' 메뉴가 보이게 해라
+								%>
+								<li class="cart"><a href="/shoes/cart?cmd=list"><i class="icon-shopping-cart"></i> Cart [0]</a></li>							
 								<li class="cart"><a href="/shoes/member?cmd=editForm">회원정보 수정</a></li>
-								<li class="cart"><a href="/shoes/member?cmd=logout">로그아웃</a></li>
+								<li class="cart" onclick="logoutFun()"><a href="javascript:void(0)">로그아웃</a></li>
 								<%
-									}
+									};
 								%>
 							</ul>
 						</div>

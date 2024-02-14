@@ -4,10 +4,17 @@
 <%@ include file="../include/header.jsp"%>
 <%
 	Member dto = (Member) request.getAttribute("dto");
-	String[] str = dto.getMember_address().split("@");
-	String post_address = str[0];
-	String main_address = str[1];
-	String detail_address = str[2];
+	String post_address = "";
+	String main_address = "";
+	String detail_address = "";
+	if(dto.getMember_address().contains("@")) {
+		String[] str = dto.getMember_address().split("@");
+		post_address = str[0];
+		main_address = str[1];
+		System.out.println(main_address);
+		detail_address = str[2];
+	}
+	
 %>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -85,7 +92,7 @@
 			               		<div class="col-md-12">
 									<div class="form-group">
 										<label for="fname">우편번호</label>
-										<input type="text" id="sample6_postcode" placeholder="우편번호" class="form-control" value= <%=post_address%> required >
+										<input type="text" id="sample6_postcode" placeholder="우편번호" class="form-control" value= "<%=post_address%>" required >
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -96,7 +103,8 @@
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="companyname">주소</label>
-			                    		<input type="text" id="sample6_address" placeholder="주소" class="form-control" value="<%=main_address%>" required><br>
+			                    		<input type="text" id="sample6_address" placeholder="주소" class="form-control" value= "<%=main_address%>" required><br>
+
 										<input type="text" id="sample6_detailAddress" placeholder="상세주소" class="form-control" value= "<%=detail_address%>" required>
 										<input type="hidden" id="member_address" name ="member_address">
 			                  		</div>
