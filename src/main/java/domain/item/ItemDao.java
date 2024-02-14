@@ -78,47 +78,52 @@ public class ItemDao extends DBConnect {
 		return items;
 	}
 	//남자 아이템 목록
-	public List<Item> findManList(int page){
-		System.out.println("find맨리스트작동");
-			List<Item> items =  new ArrayList<>();
-			String query = "select * from (select Td.*,rownum as rnum from (select * from item where item_gender = '남' order by item_key) td)"
-					+ " where rnum between ? and ?";
-			int start = 5*page+1;
-			try {
-				psmt = conn.prepareStatement(query);
-				psmt.setInt(1, start);
-				psmt.setInt(2, start+6);
-				rs = psmt.executeQuery();
-				System.out.println("rs.next ="+rs.next());
-				while(rs.next()) {
-					Item item = new Item();
-					item = Item.builder()
-							.item_key(rs.getInt("item_key"))
-							.item_name(rs.getString("item_name"))
-							.item_color(rs.getString("item_color"))
-							.item_content(rs.getString("item_content"))
-							.item_cate(rs.getString("item_cate"))
-							.item_gender(rs.getString("item_gender"))
-							.item_date(rs.getDate("item_date"))
-							.item_price(rs.getInt("item_price"))
-							.item_size(rs.getInt("item_size"))
-							.item_stock(rs.getInt("item_stock"))
-							.item_list_img(rs.getString("item_list_img"))
-							.item_cart_img(rs.getString("item_cart_img"))
-							.item_detail_img(rs.getString("item_detail_img"))
-							.build(); //객체 리턴
-					//리스트에 객체 추가
-					System.out.println(item.getItem_key());
-					items.add(item);
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}finally {
-				close();
-			}
-			return items;
-		}
+	public List<Item> findManList(int page, String category) {
+	    System.out.println("find맨리스트작동");
+	    List<Item> items =  new ArrayList<>();
+	    String query = "SELECT * FROM (SELECT Td.*, ROWNUM AS rnum FROM (SELECT * FROM item WHERE item_gender = '남'";
+	    if (category.equals("null")) {
+	        query += " AND (item_cate = '스니커즈' OR item_cate = '구두' OR item_cate = '농구화' OR item_cate = '등산화' OR item_cate = '런닝화')";
+	    } else {
+	        query += " AND item_cate = ?";
+	    }
+	    query += " ORDER BY item_key) td) WHERE rnum BETWEEN ? AND ?";
+	    int start = 5 * page + 1;
+	    try {
+	        psmt = conn.prepareStatement(query);
+	        int parameterIndex = 1;
+	        if (!category.equals("null")) {
+	            psmt.setString(parameterIndex++, category);
+	        }
+	        psmt.setInt(parameterIndex++, start);
+	        psmt.setInt(parameterIndex++, start + 6);
+	        rs = psmt.executeQuery();
+	        System.out.println("rs.next = "+rs.next());
+	        while (rs.next()) {
+	            Item item = Item.builder()
+	                    .item_key(rs.getInt("item_key"))
+	                    .item_name(rs.getString("item_name"))
+	                    .item_color(rs.getString("item_color"))
+	                    .item_content(rs.getString("item_content"))
+	                    .item_cate(rs.getString("item_cate"))
+	                    .item_gender(rs.getString("item_gender"))
+	                    .item_date(rs.getDate("item_date"))
+	                    .item_price(rs.getInt("item_price"))
+	                    .item_size(rs.getInt("item_size"))
+	                    .item_stock(rs.getInt("item_stock"))
+	                    .item_list_img(rs.getString("item_list_img"))
+	                    .item_cart_img(rs.getString("item_cart_img"))
+	                    .item_detail_img(rs.getString("item_detail_img"))
+	                    .build();
+	            items.add(item);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        close();
+	    }
+	    return items;
+	}
 	//상세보기
 	public Item findById(int id) {
 		Item item = null;

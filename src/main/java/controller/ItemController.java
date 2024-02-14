@@ -35,6 +35,7 @@ public class ItemController extends HttpServlet {
     		List<Item> items = itemService.womanList(page);
     		req.setAttribute("items", items);
     		req.setAttribute("page", page);
+    		itemService = new ItemService();
     		int total = itemService.pagenum();
     		int lastpage = (total-1)/5;
     		req.setAttribute("lastpage", lastpage);
@@ -44,9 +45,11 @@ public class ItemController extends HttpServlet {
     	}else if(cmd.equals("manlist")) {
     		System.out.println("man컨트롤러작동");
     		int page = Integer.parseInt(req.getParameter("page"));
-    		List<Item> items = itemService.manList(page);
+    		String category = req.getParameter("category");
+    		List<Item> items = itemService.manList(page, category);
     		req.setAttribute("items", items);
     		req.setAttribute("page", page);
+    		itemService = new ItemService();
     		int total = itemService.pagenum();
     		int lastpage = (total-1)/5;
     		req.setAttribute("lastpage", lastpage);

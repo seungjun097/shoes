@@ -85,7 +85,7 @@
 						<div class="col-sm-12 text-left menu-1">
 							<ul>
 								<li class="active"><a href="/shoes/">Home</a></li>
-								<li><a href="/shoes/item?cmd=manlist&page=0">man</a></li>
+								<li><a href="/shoes/item?cmd=manlist&page=0&category=null">man</a></li>
 								<li><a href="/shoes/item?cmd=womanlist&page=0">Woman</a></li>
                					<li><a href="/shoes/board?cmd=list">board</a></li>
 								<li class="cart"><a id="cartCount"></a></li>

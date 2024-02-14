@@ -21,8 +21,8 @@ public class ItemService {
 		return itemDao.findWomanList(page);
 	}
 	
-	public List<Item> manList(int page){
-		return itemDao.findManList(page);
+	public List<Item> manList(int page, String category){
+		return itemDao.findManList(page, category);
 	}
 	
 	 public Item itemDetail(int id){ 
